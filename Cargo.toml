@@ -1,0 +1,29 @@
+[package]
+name = "basyx-rs"
+authors = ["Daniel Hillen <daniel.hillen@iese.fraunhofer.de>", "Andreas Schmidt <andreas.schmidt@iese.fraunhofer.de>"]
+description = "A Rust library to work with Asset Administration Shells."
+documentation = "https://github.com/eclipse-basyx/rust-sdk/blob/main/README.md"
+keywords = ["aas", "basyx", "serde"]
+license = "EPL-2.0"
+repository = "https://github.com/eclipse-basyx/rust-sdk"
+version = "0.1.0"
+edition = "2018"
+
+[[bin]]
+name = "aascheck"
+path = "src/bin/aascheck.rs"
+test = false
+bench = false
+
+[dependencies]
+clap = { version = "=3.0.0-beta.5", optional = true }
+color-eyre = { version = "0.5.6", default-features = false }
+colored = "2.0.0"
+jsonschema = { version = "0.5.0", default-features = false }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0.20"
+
+[features]
+default = ["clap"]
+explorer = []
