@@ -2,6 +2,8 @@
 
 A Rust library to work with Asset Administration Shells (AAS).
 
+This library supports version 3.0-RC01 of the ["Details of the Asset Administration Shell"](https://www.plattform-i40.de/IP/Redaktion/EN/Downloads/Publikation/Details_of_the_Asset_Administration_Shell_Part1_V3.html). At the moment, only JSON (de-)serialization is supported.
+
 The Eclipse BaSyx project provides a [wiki](https://wiki.eclipse.org/BaSyx).
 
 For install information, see [this page](https://wiki.eclipse.org/BaSyx_/_Download).
