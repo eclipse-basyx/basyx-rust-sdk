@@ -4,7 +4,7 @@ use std::{
 };
 
 use clap::Parser;
-use color_eyre::eyre::{Context, Result};
+use color_eyre::eyre::{anyhow, Context, Result};
 use colored::Colorize;
 use jsonschema::JSONSchema;
 use serde_json::{json, Value};
@@ -51,7 +51,7 @@ fn main() -> Result<()> {
     let opt = Opts::parse();
     let instance = read_json(&opt.input)?;
     let schema = static_json()?;
-    let compiled = JSONSchema::compile(&schema)?;
+    let compiled = JSONSchema::compile(&schema).map_err(|e| anyhow!(e.to_string()))?;
     check(&compiled, instance, opt.mode)?;
     output(&opt.input, opt.mode);
     Ok(())
