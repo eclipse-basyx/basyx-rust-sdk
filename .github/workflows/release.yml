@@ -1,10 +1,11 @@
-# This Action is triggered when a PR with the label 'release' is closed and merged into 'main'.
+# This Action is triggered when a version is tagged.
 # It publishes the crates in the repo to crates.io.
 
 on:
+  push:
+    tags:
+      - '*'
   pull_request:
-    branches: [main]
-    types: [closed]
 
 name: Release on crates.io
 
@@ -12,9 +13,15 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'release')
 
     steps:
+      - name: Branch name
+        id: branch_name
+        run: |
+          echo ::set-output name=SOURCE_NAME::${GITHUB_REF#refs/*/}
+          echo ::set-output name=SOURCE_BRANCH::${GITHUB_REF#refs/heads/}
+          echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
+
       - name: Checkout sources
         uses: actions/checkout@v2
 
@@ -27,19 +34,15 @@ jobs:
       - name: Publish to crates.io
         run: |
           cargo install cargo-workspaces
-          cargo workspaces publish --from-git --token ${{ secrets.CRATES_IO_TOKEN }} custom `echo "${{ github.head_ref }}" | cut -c2-`
-      - name: Bump version and push tag
-        id: tag_version
-        uses: mathieudutour/github-tag-action@v5.6
-        with:
-          custom_tag: ${{ steps.extract_branch.outputs.branch }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          cargo workspaces publish --from-git --token ${{ secrets.CRATES_IO_TOKEN }} custom `echo "${{ SOURCE_TAG }}" | cut -c2-`
+        env:
+          SOURCE_NAME: ${{ steps.branch_name.outputs.SOURCE_NAME }}
+          SOURCE_BRANCH: ${{ steps.branch_name.outputs.SOURCE_BRANCH }}
+          SOURCE_TAG: ${{ steps.branch_name.outputs.SOURCE_TAG }}
 
       - name: Create a GitHub release
         uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.tag_version.outputs.new_tag }}
-          release_name: Release ${{ steps.tag_version.outputs.new_tag }}
-          body: ${{ steps.tag_version.outputs.changelog }}
+          tag_name: ${{ steps.branch_name.outputs.SOURCE_TAG }}
+          release_name: Release ${{ steps.branch_name.outputs.SOURCE_TAG }}
+          body: ${{ steps.branch_name.outputs.SOURCE_TAG }}
