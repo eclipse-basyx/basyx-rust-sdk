@@ -34,11 +34,7 @@ jobs:
       - name: Publish to crates.io
         run: |
           cargo install cargo-workspaces
-          cargo workspaces publish --from-git --token ${{ secrets.CRATES_IO_TOKEN }} custom `echo "${{ SOURCE_TAG }}" | cut -c2-`
-        env:
-          SOURCE_NAME: ${{ steps.branch_name.outputs.SOURCE_NAME }}
-          SOURCE_BRANCH: ${{ steps.branch_name.outputs.SOURCE_BRANCH }}
-          SOURCE_TAG: ${{ steps.branch_name.outputs.SOURCE_TAG }}
+          cargo workspaces publish --from-git --token ${{ secrets.CRATES_IO_TOKEN }} custom `echo "${{ steps.branch_name.outputs.SOURCE_TAG }}" | cut -c2-`
 
       - name: Create a GitHub release
         uses: actions/create-release@v1
