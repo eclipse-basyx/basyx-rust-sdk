@@ -33,7 +33,7 @@ jobs:
       - name: Publish to crates.io
         run: |
           cargo install cargo-workspaces
-          cargo workspaces publish --from-git --token ${{ secrets.CRATES_IO_TOKEN }} custom `echo "${{ steps.branch_name.outputs.SOURCE_TAG }}" | cut -c2-`
+          cargo workspaces publish --from-git --token ${{ secrets.CRATES_IO_TOKEN }} custom ${{ steps.branch_name.outputs.SOURCE_TAG }}
 
       - name: Create a GitHub release
         uses: actions/create-release@v1
