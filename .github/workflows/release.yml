@@ -5,7 +5,6 @@ on:
   push:
     tags:
       - '*'
-  pull_request:
 
 name: Release on crates.io
 
