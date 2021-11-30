@@ -28,6 +28,8 @@
 //! file.write_all(&json)?;
 //! ```
 
+#![forbid(unsafe_code)]
+
 mod administrative_information;
 mod asset;
 mod asset_administration_shell;

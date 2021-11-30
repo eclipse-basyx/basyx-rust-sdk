@@ -6,6 +6,7 @@
 [![Minimum Stable Rust Version](https://img.shields.io/badge/Rust-1.54.0%2B-blue?color=fc8d62&logo=rust)](https://rustup.rs/)
 [![Dependency Status](https://deps.rs/repo/github/eclipse-basyx/basyx-rust-sdk/status.svg)](https://deps.rs/repo/github/eclipse-basyx/basyx-rust-sdk)
 [![Build Status](https://img.shields.io/github/workflow/status/eclipse-basyx/basyx-rust-sdk/Run%20CI/main)](https://github.com)
+[![unsafe forbidden](https://img.shields.io/badge/unsafe-forbidden-success.svg)](https://github.com/rust-secure-code/safety-dance/)
 
 A Rust library to work with Asset Administration Shells (AAS).
 
