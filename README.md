@@ -1,10 +1,11 @@
 # BaSyx Rust SDK
 
-[![Github Actions](https://img.shields.io/github/workflow/status/eclipse-basyx/basyx-rust-sdk/Run%20CI/main)](https://github.com)
-[![Rustup.rs](https://img.shields.io/badge/rustc-1.54.0%2B-orange.svg)](https://rustup.rs/)
-[![Crates.io](https://img.shields.io/crates/v/basyx-rs.svg)](https://crates.io/crates/basyx-rs)
 [![Crates.io](https://img.shields.io/crates/l/basyx-rs.svg)](https://crates.io/crates/basyx-rs)
-[![Documentation](https://img.shields.io/badge/documentation-docs.rs-blue.svg)](https://docs.rs/basyx-rs)
+[![Crates.io](https://img.shields.io/crates/v/basyx-rs.svg)](https://crates.io/crates/basyx-rs)
+[![Documentation](https://docs.rs/basyx-rs/badge.svg)](https://docs.rs/basyx-rs)
+[![Minimum Stable Rust Version](https://img.shields.io/badge/Rust-1.54.0%2B-blue?color=fc8d62&logo=rust)](https://rustup.rs/)
+[![Dependency Status](https://deps.rs/repo/github/eclipse-basyx/basyx-rust-sdk/status.svg)](https://deps.rs/repo/github/eclipse-basyx/basyx-rust-sdk)
+[![Build Status](https://img.shields.io/github/workflow/status/eclipse-basyx/basyx-rust-sdk/Run%20CI/main)](https://github.com)
 
 A Rust library to work with Asset Administration Shells (AAS).
 
