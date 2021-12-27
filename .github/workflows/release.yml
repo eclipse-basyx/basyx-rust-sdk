@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2021 Fraunhofer Institute for Experimental Software Engineering IESE
+#
+# SPDX-License-Identifier: EPL-2.0
+
 # This Action is triggered when a version is tagged.
 # It publishes the crates in the repo to crates.io.
 

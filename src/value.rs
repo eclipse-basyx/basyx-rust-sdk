@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2021 Fraunhofer Institute for Experimental Software Engineering IESE
+//
+// SPDX-License-Identifier: EPL-2.0
+
 use crate::{error::AASError, DataObjectTypeName};
 use serde::{Deserialize, Serialize};
 
