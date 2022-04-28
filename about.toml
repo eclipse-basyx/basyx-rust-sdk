@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2021 Fraunhofer Institute for Experimental Software Engineering IESE
+#
+# SPDX-License-Identifier: CC0-1.0
+
 accepted = [
     "Apache-2.0",
     "BSD-3-Clause",

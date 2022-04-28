@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2021 Fraunhofer Institute for Experimental Software Engineering IESE
+//
+// SPDX-License-Identifier: EPL-2.0
+
 mod basic_event;
 mod data_object_type;
 pub mod data_specification_content;

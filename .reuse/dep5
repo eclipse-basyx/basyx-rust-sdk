@@ -1,0 +1,10 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: basyx-rs
+Upstream-Contact: Frank Schnicke <frank.schnicke@iese.fraunhofer.de>
+Source: github.com/eclipse-basyx/basyx-rust-sdk
+
+# Sample paragraph, commented out:
+#
+# Files: src/*
+# Copyright: $YEAR $NAME <$CONTACT>
+# License: ...
