@@ -7,11 +7,12 @@ name = "basyx-rs"
 version = "0.1.0"
 authors = [
     "Daniel Hillen <daniel.hillen@iese.fraunhofer.de>",
-    "Andreas Schmidt <andreas.schmidt@iese.fraunhofer.de>"
+    "Andreas Schmidt <andreas.schmidt@iese.fraunhofer.de>",
+    "Jan Hecht <jan.hecht@jh-isw.de"
 ]
 description = "A Rust library to work with Asset Administration Shells."
-edition = "2018"
-rust-version = "1.54.0"
+edition = "2021"
+rust-version = "1.69.0"
 homepage = "https://github.com/eclipse-basyx/rust-sdk"
 documentation = "https://docs.rs/basyx-rs/"
 readme = "README.md"
