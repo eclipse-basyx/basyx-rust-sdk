@@ -53,3 +53,23 @@ pub struct AnnotatedRelationshipElement {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub annotations: Option<Vec<DataElementChoice>>,
 }
+
+impl AnnotatedRelationshipElement{
+    pub fn new(first: Reference, second: Reference) -> Self{
+        Self{
+            extensions: None,
+            category: None,
+            id_short: None,
+            display_name: None,
+            first: first,
+            second: second,
+            model_type: ModelType::AnnotatedRelationshipElement,
+            semantic_id: None,
+            supplemental_semantic_ids: None,
+            qualifiers: None,
+            description: None,
+            embedded_data_specifications: None,
+            annotations: None,
+        }
+    }
+}
