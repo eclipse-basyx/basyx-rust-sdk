@@ -67,6 +67,7 @@ impl SubmodelElementCollection {
             value: None,
         }
     }
+
     pub fn add_submodel_element(&mut self, element: SubmodelElement) {
         if let Some(v) = self.value.as_mut() {
             v.push(element);
