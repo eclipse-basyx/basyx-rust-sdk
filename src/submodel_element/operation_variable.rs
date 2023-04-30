@@ -1,18 +1,18 @@
 // SPDX-FileCopyrightText: 2021 Fraunhofer Institute for Experimental Software Engineering IESE
+// SPDX-FileCopyrightText: 2023 Jan Hecht
 //
-// SPDX-License-Identifier: EPL-2.0
+// SPDX-License-Identifier: MIT
 
 use super::SubmodelElement;
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
+#[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct OperationVariable {
-    pub submodel_element: SubmodelElement,
+    pub value: SubmodelElement,
 }
 
 impl OperationVariable {
     pub fn new(submodel_element: SubmodelElement) -> Self {
-        Self { submodel_element }
+        Self { value: submodel_element }
     }
 }

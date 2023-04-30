@@ -1,19 +1,17 @@
-// SPDX-FileCopyrightText: 2021 Fraunhofer Institute for Experimental Software Engineering IESE
 // SPDX-FileCopyrightText: 2023 Jan Hecht
 //
 // SPDX-License-Identifier: MIT
 
-use crate::administrative_information::AdministrativeInformation;
-use crate::embedded_data_specification::EmbeddedDataSpecification;
-use crate::model_type::ModelType;
-use crate::reference::Reference;
 use serde::{Deserialize, Serialize};
-use crate::Extension;
+use crate::{EmbeddedDataSpecification, Extension, ModelType, Qualifier, Reference, SpecificAssetId};
+use crate::submodel_element::{EntityType, SubmodelElement};
 use crate::LangString as LangStringNameType;
 use crate::LangString as LangStringTextType;
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
-pub struct ConceptDescription {
+pub struct Entity {
+    // Referable
+    // HasExtension
     #[serde(skip_serializing_if = "Option::is_none")]
     pub extensions: Option<Vec<Extension>>,
 
@@ -34,37 +32,35 @@ pub struct ConceptDescription {
     #[serde(rename = "modelType")]
     pub model_type: ModelType,
 
-    // Identifiable
+    // HasSemantics
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub administration: Option<AdministrativeInformation>,
+    #[serde(rename = "semanticId")]
+    pub semantic_id: Option<Reference>,
 
-    pub id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "supplementalSemanticIds")]
+    pub supplemental_semantic_ids: Option<Vec<Reference>>,
+
+    // Qualifiable
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub qualifiers: Option<Vec<Qualifier>>,
 
     // HasDataSpecification
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "embeddedDataSpecifications")]
     pub embedded_data_specifications: Option<Vec<EmbeddedDataSpecification>>,
-    
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "isCaseOf")]
-    pub is_case_of: Option<Vec<Reference>>,
-}
 
-impl ConceptDescription {
-    pub fn new(
-        id: String
-    ) -> Self {
-        Self {
-            extensions: None,
-            category: None,
-            id_short: None,
-            display_name: None,
-            id: id,
-            embedded_data_specifications: None,
-            model_type: ModelType::ConceptDescription,
-            description: None,
-            administration: None,
-            is_case_of: None,
-        }
-    }
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub statements: Option<Vec<SubmodelElement>>,
+
+    #[serde(rename = "entityType")]
+    pub entity_type: EntityType,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "globalAssetId")]
+    pub global_asset_id: Option<String>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "specificAssetIds")]
+    pub specific_asset_ids: Option<Vec<SpecificAssetId>>,
 }

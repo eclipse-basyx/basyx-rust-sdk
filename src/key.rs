@@ -1,28 +1,23 @@
 // SPDX-FileCopyrightText: 2021 Fraunhofer Institute for Experimental Software Engineering IESE
+// SPDX-FileCopyrightText: 2023 Jan Hecht
 //
-// SPDX-License-Identifier: EPL-2.0
+// SPDX-License-Identifier: MIT
 
-use crate::key_type::KeyType;
 use serde::{Deserialize, Serialize};
+use crate::key_types::KeyTypes;
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
+#[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct Key {
-    pub r#type: String,
+    #[serde(rename = "type")]
+    pub type_: KeyTypes,
     pub value: String,
-    pub id_type: KeyType,
-    pub local: Option<bool>,
-    pub index: Option<i32>,
 }
 
 impl Key {
-    pub fn new(r#type: String, value: String, id_type: KeyType) -> Self {
+    pub fn new(type_: KeyTypes, value: String) -> Self {
         Self {
-            r#type,
-            local: None,
+            type_,
             value,
-            index: None,
-            id_type,
         }
     }
 }

@@ -5,19 +5,18 @@
 use basyx_rs::prelude::*;
 use color_eyre::eyre::Result;
 use std::io::Write;
+use basyx_rs::DataTypeDefXsd;
 
 fn main() -> Result<()> {
-    let mut property = Property::new(
-        "property".into(),
-        Some(Value::Boolean(false)),
-        DataObjectTypeName::Boolean,
-    );
-    property.category = Some(Category::CONSTANT);
-    property.kind = Some(ModelingKind::Instance);
+    let mut property = Property::new(DataTypeDefXsd::XsBoolean);
+    property.category = Some(format!("{}", Category::CONSTANT));
 
-    let sme = SubmodelElement::SMProperty(property);
+    let sme = SubmodelElement::SmeProperty(property);
 
-    let sm = Submodel::new("submodel1".into(), KeyType::IdShort, "i".into(), vec![sme]);
+    let mut sm = Submodel::new("my_id".to_string());
+
+    sm.add_submodel_element(sme.clone());
+
     serialize("submodel1.json", &sm)
 }
 

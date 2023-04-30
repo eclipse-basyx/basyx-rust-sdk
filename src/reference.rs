@@ -1,25 +1,21 @@
 // SPDX-FileCopyrightText: 2021 Fraunhofer Institute for Experimental Software Engineering IESE
+// SPDX-FileCopyrightText: 2023 Jan Hecht
 //
-// SPDX-License-Identifier: EPL-2.0
+// SPDX-License-Identifier: MIT
 
 use serde::{Deserialize, Serialize};
 
 use crate::key::Key;
+use crate::ReferenceTypes;
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
+#[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct Reference {
+    #[serde(rename = "type")]
+    pub type_: ReferenceTypes,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "referredSemanticId")]
+    pub referred_semantic_id: Option<Box<Reference>>,
+
     pub keys: Vec<Key>,
-}
-
-impl Reference {
-    pub fn from_keys(keys: Vec<Key>) -> Self {
-        Self { keys }
-    }
-}
-
-impl Default for Reference {
-    fn default() -> Self {
-        Self::from_keys(vec![])
-    }
 }
