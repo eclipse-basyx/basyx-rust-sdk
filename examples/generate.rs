@@ -1,15 +1,17 @@
 // SPDX-FileCopyrightText: 2021 Fraunhofer Institute for Experimental Software Engineering IESE
+// SPDX-FileCopyrightText: 2023 Jan Hecht
 //
-// SPDX-License-Identifier: EPL-2.0
+// SPDX-License-Identifier: MIT
 
 use basyx_rs::prelude::*;
 use color_eyre::eyre::Result;
 use std::io::Write;
-use basyx_rs::DataTypeDefXsd;
+use basyx_rs::{DataTypeDefXsd, id_short_from_str};
 
 fn main() -> Result<()> {
     let mut property = Property::new(DataTypeDefXsd::XsBoolean);
     property.category = Some(format!("{}", Category::CONSTANT));
+    property.id_short = Some(id_short_from_str("my_id_short").unwrap());
 
     let sme = SubmodelElement::SmeProperty(property);
 

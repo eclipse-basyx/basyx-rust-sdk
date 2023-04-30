@@ -22,10 +22,16 @@ impl IdShortError {
     }
 }
 
+/// id_short from &str
+///
+/// This function checks length and regex bounds, returning a Result.
 pub fn id_short_from_str(hopefully_id_short : &str) -> Result<String, IdShortError>{
     id_short_from_string(hopefully_id_short.to_string())
 }
 
+/// id_short from String
+///
+/// This function checks length and regex bounds, returning a Result.
 pub fn id_short_from_string(hopefully_id_short : String) -> Result<String, IdShortError>{
     if hopefully_id_short.len() < 1 {
         return Err(IdShortError::new(IdShortErrorReason::TooShort));
