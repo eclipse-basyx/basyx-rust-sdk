@@ -54,3 +54,22 @@ pub struct RelationshipElement {
 
     pub second: Reference,
 }
+
+impl RelationshipElement {
+    pub fn new(first: Reference, second: Reference) -> Self{
+        Self{
+            extensions: None,
+            category: None,
+            id_short: None,
+            display_name: None,
+            description: None,
+            model_type: ModelType::RelationshipElement,
+            semantic_id: None,
+            supplemental_semantic_ids: None,
+            qualifiers: None,
+            embedded_data_specifications: None,
+            first: first,
+            second: second,
+        }
+    }
+}

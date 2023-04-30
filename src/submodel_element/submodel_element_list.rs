@@ -66,3 +66,34 @@ pub struct SubmodelElementList {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub value: Option<Vec<SubmodelElement>>,
 }
+
+impl SubmodelElementList {
+    pub fn new(type_value_list_element: AasSubmodelElements) -> Self{
+        Self{
+            extensions: None,
+            category: None,
+            id_short: None,
+            display_name: None,
+            description: None,
+            model_type: ModelType::SubmodelElementList,
+            semantic_id: None,
+            supplemental_semantic_ids: None,
+            qualifiers: None,
+            embedded_data_specifications: None,
+            order_relevant: None,
+            semantic_id_list_element: None,
+            type_value_list_element: type_value_list_element,
+            value_type_list_element: None,
+            value: None,
+        }
+    }
+
+    pub fn add_submodel_element(&mut self, element: SubmodelElement) {
+        if let Some(v) = self.value.as_mut() {
+            v.push(element);
+        }
+        else {
+            self.value = Some(vec![element]);
+        }
+    }
+}

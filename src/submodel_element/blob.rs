@@ -55,3 +55,22 @@ pub struct Blob {
     #[serde(rename = "contentType")]
     pub content_type: String,
 }
+
+impl Blob {
+    pub fn new(content_type: String) -> Self{
+        Self{
+            extensions: None,
+            category: None,
+            id_short: None,
+            display_name: None,
+            description: None,
+            model_type: ModelType::Blob,
+            semantic_id: None,
+            supplemental_semantic_ids: None,
+            qualifiers: None,
+            embedded_data_specifications: None,
+            value: None,
+            content_type: content_type,
+        }
+    }
+}

@@ -59,3 +59,22 @@ pub struct MultiLanguageProperty {
     #[serde(rename = "valueId")]
     pub value_id: Option<Reference>,
 }
+
+impl MultiLanguageProperty {
+    pub fn new() -> Self{
+        Self{
+            extensions: None,
+            category: None,
+            id_short: None,
+            display_name: None,
+            description: None,
+            model_type: ModelType::MultiLanguageProperty,
+            semantic_id: None,
+            supplemental_semantic_ids: None,
+            qualifiers: None,
+            embedded_data_specifications: None,
+            value: None,
+            value_id: None,
+        }
+    }
+}

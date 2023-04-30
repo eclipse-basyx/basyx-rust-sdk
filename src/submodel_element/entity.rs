@@ -64,3 +64,24 @@ pub struct Entity {
     #[serde(rename = "specificAssetIds")]
     pub specific_asset_ids: Option<Vec<SpecificAssetId>>,
 }
+
+impl Entity {
+    pub fn new(entity_type: EntityType) -> Self{
+        Self{
+            extensions: None,
+            category: None,
+            id_short: None,
+            display_name: None,
+            description: None,
+            model_type: ModelType::Entity,
+            semantic_id: None,
+            supplemental_semantic_ids: None,
+            qualifiers: None,
+            embedded_data_specifications: None,
+            statements: None,
+            entity_type: entity_type,
+            global_asset_id: None,
+            specific_asset_ids: None,
+        }
+    }
+}

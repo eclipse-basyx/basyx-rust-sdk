@@ -46,3 +46,20 @@ pub struct Capability {
     #[serde(rename = "embeddedDataSpecifications")]
     pub embedded_data_specifications: Option<Vec<EmbeddedDataSpecification>>,
 }
+
+impl Capability {
+    pub fn new() -> Self{
+        Self{
+            extensions: None,
+            category: None,
+            id_short: None,
+            display_name: None,
+            description: None,
+            model_type: ModelType::Capability,
+            semantic_id: None,
+            supplemental_semantic_ids: None,
+            qualifiers: None,
+            embedded_data_specifications: None,
+        }
+    }
+}
