@@ -5,7 +5,7 @@
 
 [package]
 name = "basyx-rs"
-version = "0.1.0"
+version = "0.2.0"
 authors = [
     "Daniel Hillen <daniel.hillen@iese.fraunhofer.de>",
     "Andreas Schmidt <andreas.schmidt@iese.fraunhofer.de>",
@@ -18,7 +18,7 @@ homepage = "https://github.com/eclipse-basyx/rust-sdk"
 documentation = "https://docs.rs/basyx-rs/"
 readme = "README.md"
 keywords = ["aas", "basyx", "serde"]
-license = "EPL-2.0"
+license = "MIT"
 repository = "https://github.com/eclipse-basyx/rust-sdk"
 
 [[bin]]

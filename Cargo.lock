@@ -2,7 +2,7 @@
 # It is not intended for manual editing.
 # SPDX-FileCopyrightText: 2021 Fraunhofer Institute for Experimental Software Engineering IESE
 #
-# SPDX-License-Identifier: EPL-2.0
+# SPDX-License-Identifier: MIT
 version = 3
 
 [[package]]
@@ -88,7 +88,7 @@ checksum = "a4a4ddaa51a5bc52a6948f74c06d20aaaddb71924eab79b8c97a8c556e942d6a"
 
 [[package]]
 name = "basyx-rs"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "clap",
  "color-eyre",
