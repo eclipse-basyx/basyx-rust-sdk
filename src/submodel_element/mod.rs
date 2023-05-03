@@ -45,11 +45,11 @@ pub use operation_variable::OperationVariable;
 pub use property::Property;
 pub use range::Range;
 pub use reference_element::ReferenceElement;
+pub use relationship_element::RelationshipElement;
 pub use submodel_element_collection::SubmodelElementCollection;
 pub use submodel_element_list::SubmodelElementList;
 
 use serde::{Deserialize, Serialize};
-use crate::submodel_element::relationship_element::RelationshipElement;
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 #[serde(untagged)]

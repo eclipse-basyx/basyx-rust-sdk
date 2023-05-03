@@ -3,11 +3,12 @@
 // SPDX-License-Identifier: MIT
 
 pub use crate::{
-    AdministrativeInformation, Category, ConceptDescription, DataObjectTypeName, Environment,
-    Key, LangString, ModelType, ModellingKind, Reference, Submodel,
+    AdministrativeInformation, AssetAdministrationShell, AssetInformation, Category, ConceptDescription,
+    DataObjectTypeName, Environment, Key, LangString, ModelType, ModellingKind, Reference, Submodel,
 };
 
 pub use crate::submodel_element::{
-    BasicEventElement, Operation, OperationVariable, Property, Range, ReferenceElement,
-    SubmodelElement, SubmodelElementCollection,
+    AasSubmodelElements, AnnotatedRelationshipElement, BasicEventElement, Blob, Capability, DataElement, Entity,
+    File, MultiLanguageProperty, Operation, Property, Range, ReferenceElement, RelationshipElement,
+    SubmodelElement, SubmodelElementCollection, SubmodelElementList
 };
