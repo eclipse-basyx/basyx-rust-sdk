@@ -6,24 +6,45 @@
 use basyx_rs::prelude::*;
 use color_eyre::eyre::Result;
 use std::io::Write;
-use basyx_rs::{DataTypeDefXsd, id_short_from_str};
+use basyx_rs::{AssetAdministrationShell, AssetInformation, AssetKind, DataTypeDefXsd, id_short_from_str};
 
 fn main() -> Result<()> {
     let mut property = Property::new(DataTypeDefXsd::XsBoolean);
     property.category = Some(format!("{}", Category::CONSTANT));
-    property.id_short = Some(id_short_from_str("my_id_short").unwrap());
+
+    if let Some(id_short) = id_short_from_str("my_property1").ok() {
+        property.id_short = Some(id_short);
+    }
+
+    property.value = Some("true".to_string());
 
     let sme = SubmodelElement::SmeProperty(property);
 
-    let mut sm = Submodel::new("my_id".to_string());
+    let mut sm = Submodel::new("https://example.com/ids/1234567890".to_string());
+
+    if let Some(id_short) = id_short_from_str("my_submodel1").ok() {
+        sm.id_short = Some(id_short);
+    }
 
     sm.add_submodel_element(sme.clone());
 
-    serialize("submodel1.json", &sm)
+    let mut aas = AssetAdministrationShell::new("https://example.com/ids/0987654321".to_string(),
+                                            AssetInformation::new(AssetKind::Instance));
+
+    if let Some(id_short) = id_short_from_str("my_aas1").ok() {
+        aas.id_short = Some(id_short);
+    }
+    // unfortunately, aascheck won't notice, if the id_short is malformed.
+    //aas.id_short = Some("_id_short".to_string());
+
+    aas.add_reference_to_submodel(&sm);
+
+    serialize("submodel1.json", &sm).ok();
+    serialize("aas1.json", &aas)
 }
 
-fn serialize(path: &str, submodel: &Submodel) -> Result<()> {
-    let json = serde_json::to_vec(submodel)?;
+fn serialize<T: serde::ser::Serialize>(path: &str, element: &T) -> Result<()> {
+    let json = serde_json::to_vec(element)?;
     let mut file = std::fs::OpenOptions::new()
         .create(true)
         .write(true)

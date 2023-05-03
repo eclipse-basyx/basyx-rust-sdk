@@ -10,7 +10,7 @@ use std::{
 use clap::Parser;
 use color_eyre::eyre::{anyhow, Context, Result};
 use colored::Colorize;
-use jsonschema::JSONSchema;
+use jsonschema::{Draft, JSONSchema};
 use serde_json::{json, Value};
 use thiserror::Error;
 
@@ -55,7 +55,9 @@ fn main() -> Result<()> {
     let opt = Opts::parse();
     let instance = read_json(&opt.input)?;
     let schema = static_json()?;
-    let compiled = JSONSchema::compile(&schema).map_err(|e| anyhow!(e.to_string()))?;
+    let compiled = JSONSchema::options()
+        .with_draft(Draft::Draft201909)
+        .compile(&schema).map_err(|e| anyhow!(e.to_string()))?;
     check(&compiled, instance, opt.mode)?;
     output(&opt.input, opt.mode);
     Ok(())
@@ -70,7 +72,6 @@ fn check(schema: &JSONSchema, instance: Value, mode: Mode) -> Result<()> {
                 "submodels": [
                     instance
                 ],
-                "assets": [],
                 "conceptDescriptions": []
             })
         }
