@@ -65,7 +65,6 @@ pub struct Submodel {
     #[serde(rename = "embeddedDataSpecifications")]
     pub embedded_data_specifications: Option<Vec<EmbeddedDataSpecification>>,
 
-
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "submodelElements")]
     pub submodel_elements: Option<Vec<SubmodelElement>>,
