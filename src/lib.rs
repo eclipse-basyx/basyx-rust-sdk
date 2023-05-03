@@ -9,16 +9,23 @@
 //!
 //! ## Creating a Submodel and Serialize to JSON
 //! ```no_run
-//! use basyx_rs::DataTypeDefXsd;
+//! use basyx_rs::{DataTypeDefXsd, id_short_from_str};
 //! use basyx_rs::prelude::*;
 //! use std::io::Write;
 //!
 //! let mut property = Property::new(DataTypeDefXsd::XsBoolean);
 //! property.category = Some(format!("{}", Category::CONSTANT));
 //!
+//! // id_short mandatory for all non-identifiable referables.
+//! if let Some(id_short) = id_short_from_str("my_property1").ok() {
+//!         property.id_short = Some(id_short);
+//!    }
+//!
 //! let sme = SubmodelElement::SmeProperty(property);
 //!
-//! let submodel = Submodel::new("submodel1".into(), KeyType::IdShort, "i".into(), vec![sme]);
+//! let mut submodel = Submodel::new("https://example.com/ids/1234567890".to_string());
+//!
+//! submodel.add_submodel_element(sme.clone());
 //!
 //! let json = serde_json::to_vec(&submodel);
 //! let mut file = std::fs::OpenOptions::new()
