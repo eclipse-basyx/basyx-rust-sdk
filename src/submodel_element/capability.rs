@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 Jan Hecht
+//
+// SPDX-License-Identifier: MIT
+
 use crate::{Extension, ModelType, Qualifier, Reference};
 use crate::embedded_data_specification::EmbeddedDataSpecification;
 use crate::LangString as LangStringNameType;
