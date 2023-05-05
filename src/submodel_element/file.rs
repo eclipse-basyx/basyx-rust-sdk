@@ -4,10 +4,10 @@
 // SPDX-License-Identifier: MIT
 
 use super::EmbeddedDataSpecification;
-use crate::{Extension, model_type::ModelType, qualifier::Qualifier, reference::Reference};
-use serde::{Deserialize, Serialize};
 use crate::LangString as LangStringNameType;
 use crate::LangString as LangStringTextType;
+use crate::{model_type::ModelType, qualifier::Qualifier, reference::Reference, Extension};
+use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct File {
@@ -58,7 +58,6 @@ pub struct File {
     #[serde(rename = "contentType")]
     pub content_type: String,
 }
-
 
 impl File {
     pub fn new(content_type: String) -> Self {

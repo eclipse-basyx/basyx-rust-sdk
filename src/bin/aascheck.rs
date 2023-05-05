@@ -57,7 +57,8 @@ fn main() -> Result<()> {
     let schema = static_json()?;
     let compiled = JSONSchema::options()
         .with_draft(Draft::Draft201909)
-        .compile(&schema).map_err(|e| anyhow!(e.to_string()))?;
+        .compile(&schema)
+        .map_err(|e| anyhow!(e.to_string()))?;
     check(&compiled, instance, opt.mode)?;
     output(&opt.input, opt.mode);
     Ok(())

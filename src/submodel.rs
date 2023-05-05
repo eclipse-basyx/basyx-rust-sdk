@@ -10,10 +10,10 @@ use crate::modelling_kind::ModellingKind;
 use crate::qualifier::Qualifier;
 use crate::reference::Reference;
 use crate::submodel_element::SubmodelElement;
-use serde::{Deserialize, Serialize};
 use crate::Extension;
 use crate::LangString as LangStringNameType;
 use crate::LangString as LangStringTextType;
+use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct Submodel {
@@ -71,9 +71,7 @@ pub struct Submodel {
 }
 
 impl Submodel {
-    pub fn new(
-        id: String,
-    ) -> Self {
+    pub fn new(id: String) -> Self {
         Self {
             extensions: None,
             category: None,
@@ -85,7 +83,7 @@ impl Submodel {
             supplemental_semantic_ids: None,
             qualifiers: None,
             embedded_data_specifications: None,
-            model_type : ModelType::Submodel,
+            model_type: ModelType::Submodel,
             description: None,
             administration: None,
             submodel_elements: None,
@@ -95,8 +93,7 @@ impl Submodel {
     pub fn add_submodel_element(&mut self, element: SubmodelElement) {
         if let Some(v) = self.submodel_elements.as_mut() {
             v.push(element);
-        }
-        else {
+        } else {
             self.submodel_elements = Some(vec![element]);
         }
     }

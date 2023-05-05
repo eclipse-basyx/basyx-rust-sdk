@@ -2,9 +2,9 @@
 //
 // SPDX-License-Identifier: MIT
 
+use crate::asset_administration_shell::AssetAdministrationShell;
 use crate::concept_description::ConceptDescription;
 use crate::submodel::Submodel;
-use crate::asset_administration_shell::AssetAdministrationShell;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Default, Deserialize, Serialize)]

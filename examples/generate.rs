@@ -4,9 +4,11 @@
 // SPDX-License-Identifier: MIT
 
 use basyx_rs::prelude::*;
+use basyx_rs::{
+    id_short_from_str, AssetAdministrationShell, AssetInformation, AssetKind, DataTypeDefXsd,
+};
 use color_eyre::eyre::Result;
 use std::io::Write;
-use basyx_rs::{AssetAdministrationShell, AssetInformation, AssetKind, DataTypeDefXsd, id_short_from_str};
 
 fn main() -> Result<()> {
     let mut property = Property::new(DataTypeDefXsd::XsBoolean);
@@ -28,8 +30,10 @@ fn main() -> Result<()> {
 
     sm.add_submodel_element(sme.clone());
 
-    let mut aas = AssetAdministrationShell::new("https://example.com/ids/0987654321".to_string(),
-                                            AssetInformation::new(AssetKind::Instance));
+    let mut aas = AssetAdministrationShell::new(
+        "https://example.com/ids/0987654321".to_string(),
+        AssetInformation::new(AssetKind::Instance),
+    );
 
     if let Some(id_short) = id_short_from_str("my_aas1").ok() {
         aas.id_short = Some(id_short);

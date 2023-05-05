@@ -4,9 +4,11 @@
 // SPDX-License-Identifier: MIT
 
 use super::EmbeddedDataSpecification;
-use crate::{model_type::ModelType, qualifier::Qualifier, reference::Reference, Extension, DataTypeDefXsd};
 use crate::LangString as LangStringNameType;
 use crate::LangString as LangStringTextType;
+use crate::{
+    model_type::ModelType, qualifier::Qualifier, reference::Reference, DataTypeDefXsd, Extension,
+};
 use serde::{Deserialize, Serialize};
 
 #[cfg(feature = "explorer")]
@@ -61,7 +63,6 @@ pub struct Property {
     // #[cfg(not(feature = "explorer"))]
     // #[serde(skip_serializing_if = "Option::is_none")]
     // pub value: Option<Value>,
-
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "valueId")]
     pub value_id: Option<Reference>,
@@ -86,7 +87,6 @@ impl Property {
             // },
             // #[cfg(not(feature = "explorer"))]
             // value,
-
             extensions: None,
             category: None,
             id_short: None,

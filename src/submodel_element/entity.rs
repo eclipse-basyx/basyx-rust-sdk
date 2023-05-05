@@ -2,11 +2,13 @@
 //
 // SPDX-License-Identifier: MIT
 
-use serde::{Deserialize, Serialize};
-use crate::{EmbeddedDataSpecification, Extension, ModelType, Qualifier, Reference, SpecificAssetId};
 use crate::submodel_element::{EntityType, SubmodelElement};
 use crate::LangString as LangStringNameType;
 use crate::LangString as LangStringTextType;
+use crate::{
+    EmbeddedDataSpecification, Extension, ModelType, Qualifier, Reference, SpecificAssetId,
+};
+use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct Entity {
@@ -66,8 +68,8 @@ pub struct Entity {
 }
 
 impl Entity {
-    pub fn new(entity_type: EntityType) -> Self{
-        Self{
+    pub fn new(entity_type: EntityType) -> Self {
+        Self {
             extensions: None,
             category: None,
             id_short: None,

@@ -11,8 +11,8 @@ pub enum QualifierKind {
     ValueQualifier,
 }
 
-impl QualifierKind{
-    pub fn get(qualifier_kind: String) -> Result<QualifierKind, ()>{
+impl QualifierKind {
+    pub fn get(qualifier_kind: String) -> Result<QualifierKind, ()> {
         match qualifier_kind.as_str().to_lowercase().as_str() {
             "ConceptQualifier" => Ok(QualifierKind::ConceptQualifier),
             "TemplateQualifier" => Ok(QualifierKind::TemplateQualifier),

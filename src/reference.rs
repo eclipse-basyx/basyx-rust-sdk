@@ -22,17 +22,17 @@ pub struct Reference {
     pub keys: Vec<Key>,
 }
 
-impl Reference{
-    pub fn new(type_: ReferenceTypes, key: Key) -> Self{
-        Self{
+impl Reference {
+    pub fn new(type_: ReferenceTypes, key: Key) -> Self {
+        Self {
             type_: type_,
             referred_semantic_id: None,
             keys: vec![key],
         }
     }
 
-    pub fn new_from_vec(type_: ReferenceTypes, keys: Vec<Key>) -> Self{
-        Self{
+    pub fn new_from_vec(type_: ReferenceTypes, keys: Vec<Key>) -> Self {
+        Self {
             type_: type_,
             referred_semantic_id: None,
             keys: keys,

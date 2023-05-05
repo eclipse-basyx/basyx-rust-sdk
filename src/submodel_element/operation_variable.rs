@@ -13,6 +13,8 @@ pub struct OperationVariable {
 
 impl OperationVariable {
     pub fn new(submodel_element: SubmodelElement) -> Self {
-        Self { value: submodel_element }
+        Self {
+            value: submodel_element,
+        }
     }
 }

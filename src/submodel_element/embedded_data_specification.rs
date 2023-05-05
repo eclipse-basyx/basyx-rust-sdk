@@ -4,8 +4,8 @@
 // SPDX-License-Identifier: MIT
 
 use crate::reference::Reference;
-use serde::{Deserialize, Serialize};
 use crate::DataSpecificationContent;
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 #[serde(rename_all = "camelCase")]

@@ -4,11 +4,13 @@
 // SPDX-License-Identifier: MIT
 
 use super::{EmbeddedDataSpecification, SubmodelElement};
-use crate::{model_type::ModelType, reference::Reference, qualifier::Qualifier, Extension, DataTypeDefXsd};
-use serde::{Deserialize, Serialize};
+use crate::submodel_element::AasSubmodelElements;
 use crate::LangString as LangStringNameType;
 use crate::LangString as LangStringTextType;
-use crate::submodel_element::AasSubmodelElements;
+use crate::{
+    model_type::ModelType, qualifier::Qualifier, reference::Reference, DataTypeDefXsd, Extension,
+};
+use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct SubmodelElementList {
@@ -68,8 +70,8 @@ pub struct SubmodelElementList {
 }
 
 impl SubmodelElementList {
-    pub fn new(type_value_list_element: AasSubmodelElements) -> Self{
-        Self{
+    pub fn new(type_value_list_element: AasSubmodelElements) -> Self {
+        Self {
             extensions: None,
             category: None,
             id_short: None,
@@ -91,8 +93,7 @@ impl SubmodelElementList {
     pub fn add_submodel_element(&mut self, element: SubmodelElement) {
         if let Some(v) = self.value.as_mut() {
             v.push(element);
-        }
-        else {
+        } else {
             self.value = Some(vec![element]);
         }
     }

@@ -5,8 +5,7 @@
 use serde::{Deserialize, Serialize};
 use strum_macros::EnumString;
 
-#[derive(EnumString)]
-#[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
+#[derive(EnumString, Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub enum DataTypeIec61360 {
     #[serde(rename = "BLOB")]
     Blob,

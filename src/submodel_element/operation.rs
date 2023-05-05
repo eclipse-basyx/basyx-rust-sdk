@@ -4,11 +4,11 @@
 // SPDX-License-Identifier: MIT
 
 use super::EmbeddedDataSpecification;
-use crate::{Extension, model_type::ModelType, reference::Reference, Qualifier};
-use serde::{Deserialize, Serialize};
 use crate::submodel_element::OperationVariable;
 use crate::LangString as LangStringNameType;
 use crate::LangString as LangStringTextType;
+use crate::{model_type::ModelType, reference::Reference, Extension, Qualifier};
+use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct Operation {
@@ -67,8 +67,7 @@ pub struct Operation {
 }
 
 impl Operation {
-    pub fn new(
-    ) -> Self {
+    pub fn new() -> Self {
         Self {
             extensions: None,
             category: None,

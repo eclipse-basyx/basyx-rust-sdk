@@ -4,10 +4,10 @@
 // SPDX-License-Identifier: MIT
 
 use super::EmbeddedDataSpecification;
-use crate::{Extension, model_type::ModelType, qualifier::Qualifier, reference::Reference};
-use serde::{Deserialize, Serialize};
 use crate::LangString as LangStringNameType;
 use crate::LangString as LangStringTextType;
+use crate::{model_type::ModelType, qualifier::Qualifier, reference::Reference, Extension};
+use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct MultiLanguageProperty {
@@ -61,8 +61,8 @@ pub struct MultiLanguageProperty {
 }
 
 impl MultiLanguageProperty {
-    pub fn new() -> Self{
-        Self{
+    pub fn new() -> Self {
+        Self {
             extensions: None,
             category: None,
             id_short: None,

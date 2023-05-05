@@ -2,11 +2,11 @@
 //
 // SPDX-License-Identifier: MIT
 
-use serde::{Deserialize, Serialize};
-use crate::{DataTypeIec61360, LevelType, ModelType, Reference, ValueList};
 use crate::LangString as LangStringDefinitionTypeIec61360;
 use crate::LangString as LangStringPreferredNameTypeIec61360;
 use crate::LangString as LangStringShortNameTypeIec61360;
+use crate::{DataTypeIec61360, LevelType, ModelType, Reference, ValueList};
+use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct DataSpecificationIec61360 {

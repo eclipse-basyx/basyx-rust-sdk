@@ -2,8 +2,8 @@
 //
 // SPDX-License-Identifier: MIT
 
-use serde::{Deserialize, Serialize};
 use crate::ModelType;
+use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct DataSpecificationContent {

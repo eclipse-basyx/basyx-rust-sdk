@@ -2,11 +2,11 @@
 //
 // SPDX-License-Identifier: MIT
 
-use crate::{Extension, ModelType, Qualifier, Reference};
 use crate::embedded_data_specification::EmbeddedDataSpecification;
-use serde::{Deserialize, Serialize};
 use crate::LangString as LangStringNameType;
 use crate::LangString as LangStringTextType;
+use crate::{Extension, ModelType, Qualifier, Reference};
+use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct Blob {
@@ -57,8 +57,8 @@ pub struct Blob {
 }
 
 impl Blob {
-    pub fn new(content_type: String) -> Self{
-        Self{
+    pub fn new(content_type: String) -> Self {
+        Self {
             extensions: None,
             category: None,
             id_short: None,

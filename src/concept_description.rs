@@ -7,10 +7,10 @@ use crate::administrative_information::AdministrativeInformation;
 use crate::embedded_data_specification::EmbeddedDataSpecification;
 use crate::model_type::ModelType;
 use crate::reference::Reference;
-use serde::{Deserialize, Serialize};
 use crate::Extension;
 use crate::LangString as LangStringNameType;
 use crate::LangString as LangStringTextType;
+use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct ConceptDescription {
@@ -44,16 +44,14 @@ pub struct ConceptDescription {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "embeddedDataSpecifications")]
     pub embedded_data_specifications: Option<Vec<EmbeddedDataSpecification>>,
-    
+
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "isCaseOf")]
     pub is_case_of: Option<Vec<Reference>>,
 }
 
 impl ConceptDescription {
-    pub fn new(
-        id: String
-    ) -> Self {
+    pub fn new(id: String) -> Self {
         Self {
             extensions: None,
             category: None,

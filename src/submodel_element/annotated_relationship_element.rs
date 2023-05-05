@@ -3,11 +3,11 @@
 // SPDX-License-Identifier: MIT
 
 use crate::embedded_data_specification::EmbeddedDataSpecification;
-use crate::{Extension, ModelType, Qualifier, Reference};
 use crate::submodel_element::data_element_choice::DataElementChoice;
-use serde::{Deserialize, Serialize};
 use crate::LangString as LangStringNameType;
 use crate::LangString as LangStringTextType;
+use crate::{Extension, ModelType, Qualifier, Reference};
+use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct AnnotatedRelationshipElement {
@@ -54,9 +54,9 @@ pub struct AnnotatedRelationshipElement {
     pub annotations: Option<Vec<DataElementChoice>>,
 }
 
-impl AnnotatedRelationshipElement{
-    pub fn new(first: Reference, second: Reference) -> Self{
-        Self{
+impl AnnotatedRelationshipElement {
+    pub fn new(first: Reference, second: Reference) -> Self {
+        Self {
             extensions: None,
             category: None,
             id_short: None,

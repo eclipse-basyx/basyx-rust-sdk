@@ -4,10 +4,10 @@
 // SPDX-License-Identifier: MIT
 
 use super::{EmbeddedDataSpecification, SubmodelElement};
-use crate::{model_type::ModelType, reference::Reference, qualifier::Qualifier, Extension};
-use serde::{Deserialize, Serialize};
 use crate::LangString as LangStringNameType;
 use crate::LangString as LangStringTextType;
+use crate::{model_type::ModelType, qualifier::Qualifier, reference::Reference, Extension};
+use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct SubmodelElementCollection {
@@ -45,14 +45,13 @@ pub struct SubmodelElementCollection {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "embeddedDataSpecifications")]
     pub embedded_data_specifications: Option<Vec<EmbeddedDataSpecification>>,
-    
+
     #[serde(skip_serializing_if = "Option::is_none")]
     pub value: Option<Vec<SubmodelElement>>,
 }
 
 impl SubmodelElementCollection {
-    pub fn new(
-    ) -> Self {
+    pub fn new() -> Self {
         Self {
             extensions: None,
             category: None,
@@ -71,8 +70,7 @@ impl SubmodelElementCollection {
     pub fn add_submodel_element(&mut self, element: SubmodelElement) {
         if let Some(v) = self.value.as_mut() {
             v.push(element);
-        }
-        else {
+        } else {
             self.value = Some(vec![element]);
         }
     }

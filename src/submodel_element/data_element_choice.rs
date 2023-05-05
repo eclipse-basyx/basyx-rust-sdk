@@ -2,8 +2,10 @@
 //
 // SPDX-License-Identifier: MIT
 
+use crate::submodel_element::{
+    Blob, File, MultiLanguageProperty, Property, Range, ReferenceElement,
+};
 use serde::{Deserialize, Serialize};
-use crate::submodel_element::{Blob, File, MultiLanguageProperty, Property, Range, ReferenceElement};
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub enum DataElementChoice {

@@ -3,13 +3,15 @@
 //
 // SPDX-License-Identifier: MIT
 
-use crate::{administrative_information::AdministrativeInformation, asset_information::AssetInformation,
-            embedded_data_specification::EmbeddedDataSpecification, Extension, Key, model_type::ModelType,
-            reference::Reference, ReferenceTypes, Submodel};
-use serde::{Deserialize, Serialize};
 use crate::key_types::KeyTypes;
 use crate::LangString as LangStringNameType;
 use crate::LangString as LangStringTextType;
+use crate::{
+    administrative_information::AdministrativeInformation, asset_information::AssetInformation,
+    embedded_data_specification::EmbeddedDataSpecification, model_type::ModelType,
+    reference::Reference, Extension, Key, ReferenceTypes, Submodel,
+};
+use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct AssetAdministrationShell {
@@ -57,10 +59,7 @@ pub struct AssetAdministrationShell {
 }
 
 impl AssetAdministrationShell {
-    pub fn new(
-        id: String,
-        asset_information: AssetInformation
-    ) -> Self {
+    pub fn new(id: String, asset_information: AssetInformation) -> Self {
         Self {
             extensions: None,
             category: None,
@@ -80,7 +79,8 @@ impl AssetAdministrationShell {
     pub fn add_reference_to_submodel(&mut self, submodel: &Submodel) {
         let mut reference = Reference::new(
             ReferenceTypes::ModelReference,
-            Key::new(KeyTypes::Submodel, submodel.id.clone()));
+            Key::new(KeyTypes::Submodel, submodel.id.clone()),
+        );
 
         if let Some(rsid) = &submodel.semantic_id {
             reference.referred_semantic_id = Some(Box::new(rsid.clone()));
@@ -88,15 +88,13 @@ impl AssetAdministrationShell {
 
         if let Some(v) = self.submodels.as_mut() {
             v.push(reference);
-        }
-        else {
+        } else {
             self.submodels = Some(vec![reference]);
         }
     }
 
-    pub fn delete_reference_to_submodel(&mut self, index: usize){
-        if let Some(v) = self.submodels.as_mut()
-        {
+    pub fn delete_reference_to_submodel(&mut self, index: usize) {
+        if let Some(v) = self.submodels.as_mut() {
             if index < v.len() {
                 v.remove(index);
             }

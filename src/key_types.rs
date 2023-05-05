@@ -3,10 +3,9 @@
 // SPDX-License-Identifier: MIT
 
 use serde::{Deserialize, Serialize};
-use strum_macros::{EnumString, Display};
+use strum_macros::{Display, EnumString};
 
-#[derive(EnumString, Display)]
-#[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
+#[derive(EnumString, Display, Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub enum KeyTypes {
     AnnotatedRelationshipElement,
     AssetAdministrationShell,

@@ -23,9 +23,9 @@ mod property;
 mod range;
 mod reference_element;
 mod relationship_element;
+mod state_of_event;
 mod submodel_element_collection;
 mod submodel_element_list;
-mod state_of_event;
 
 pub use aas_submodel_elements::AasSubmodelElements;
 pub use annotated_relationship_element::AnnotatedRelationshipElement;

@@ -3,10 +3,10 @@
 //
 // SPDX-License-Identifier: MIT
 
-use serde::{Deserialize, Serialize};
-use crate::{Extension, ModelType, Qualifier, Reference, EmbeddedDataSpecification};
 use crate::LangString as LangStringNameType;
 use crate::LangString as LangStringTextType;
+use crate::{EmbeddedDataSpecification, Extension, ModelType, Qualifier, Reference};
+use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct RelationshipElement {
@@ -56,8 +56,8 @@ pub struct RelationshipElement {
 }
 
 impl RelationshipElement {
-    pub fn new(first: Reference, second: Reference) -> Self{
-        Self{
+    pub fn new(first: Reference, second: Reference) -> Self {
+        Self {
             extensions: None,
             category: None,
             id_short: None,

@@ -3,8 +3,8 @@
 //
 // SPDX-License-Identifier: MIT
 
-use serde::{Deserialize, Serialize};
 use crate::{DataSpecificationIec61360, Reference};
+use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct EmbeddedDataSpecification {

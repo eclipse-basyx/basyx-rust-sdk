@@ -30,9 +30,9 @@ pub struct AssetInformation {
     pub default_thumbnail: Option<Resource>,
 }
 
-impl AssetInformation{
-    pub fn new(asset_kind: AssetKind) -> Self{
-        Self{
+impl AssetInformation {
+    pub fn new(asset_kind: AssetKind) -> Self {
+        Self {
             asset_kind: asset_kind,
             global_asset_id: None,
             specific_asset_ids: None,

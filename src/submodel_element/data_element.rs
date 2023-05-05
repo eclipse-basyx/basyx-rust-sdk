@@ -2,11 +2,11 @@
 //
 // SPDX-License-Identifier: MIT
 
-use crate::{Extension, ModelType, Qualifier, Reference};
 use crate::embedded_data_specification::EmbeddedDataSpecification;
-use serde::{Deserialize, Serialize};
 use crate::LangString as LangStringNameType;
 use crate::LangString as LangStringTextType;
+use crate::{Extension, ModelType, Qualifier, Reference};
+use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct DataElement {

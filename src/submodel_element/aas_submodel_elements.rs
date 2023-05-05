@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: MIT
 
 use serde::{Deserialize, Serialize};
-use strum_macros::{EnumString, Display};
+use strum_macros::{Display, EnumString};
 
 #[derive(Serialize, Deserialize, Debug, Clone, EnumString, Display, PartialEq)]
 pub enum AasSubmodelElements {

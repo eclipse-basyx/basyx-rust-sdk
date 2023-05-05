@@ -27,8 +27,8 @@ pub enum ModelType {
     SubmodelElementList,
 }
 
-impl ModelType{
-    pub fn get(key_type: String) -> Result<ModelType, ()>{
+impl ModelType {
+    pub fn get(key_type: String) -> Result<ModelType, ()> {
         match key_type.as_str().to_lowercase().as_str() {
             "AnnotatedRelationshipElement" => Ok(ModelType::AnnotatedRelationshipElement),
             "AssetAdministrationShell" => Ok(ModelType::AssetAdministrationShell),

@@ -3,8 +3,8 @@
 //
 // SPDX-License-Identifier: MIT
 
-use serde::{Deserialize, Serialize};
 use crate::key_types::KeyTypes;
+use serde::{Deserialize, Serialize};
 
 /// A key is a reference to an element by its ID.
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
@@ -30,9 +30,6 @@ pub struct Key {
 
 impl Key {
     pub fn new(type_: KeyTypes, value: String) -> Self {
-        Self {
-            type_,
-            value,
-        }
+        Self { type_, value }
     }
 }
