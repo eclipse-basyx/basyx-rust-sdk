@@ -65,7 +65,7 @@ impl AssetAdministrationShell {
             category: None,
             id_short: None,
             display_name: None,
-            id: id,
+            id,
             embedded_data_specifications: None,
             derived_from: None,
             asset_information,

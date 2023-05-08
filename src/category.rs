@@ -6,15 +6,10 @@
 use serde::{Deserialize, Serialize};
 use strum_macros::{Display, EnumString};
 
-#[derive(Serialize, Deserialize, Debug, Clone, EnumString, Display)]
+#[derive(Serialize, Deserialize, Debug, Clone, EnumString, Display, Default)]
 pub enum Category {
     VARIABLE,
     PARAMETER,
+    #[default]
     CONSTANT,
-}
-
-impl Default for Category {
-    fn default() -> Self {
-        Category::CONSTANT
-    }
 }

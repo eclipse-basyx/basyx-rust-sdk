@@ -7,8 +7,9 @@ use std::str::FromStr;
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
+#[derive(Clone, PartialEq, Debug, Deserialize, Serialize, Default)]
 pub enum ModellingKind {
+    #[default]
     Instance,
     Template,
 }
@@ -22,11 +23,5 @@ impl FromStr for ModellingKind {
             "Template" => ModellingKind::Template,
             _ => return Err(()),
         })
-    }
-}
-
-impl Default for ModellingKind {
-    fn default() -> Self {
-        ModellingKind::Instance
     }
 }

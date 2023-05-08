@@ -4,13 +4,13 @@
 // SPDX-License-Identifier: MIT
 
 use super::EmbeddedDataSpecification;
-use crate::LangString as LangStringNameType;
+use crate::{DataTypeDefXsd, LangString as LangStringNameType};
 use crate::LangString as LangStringTextType;
 use crate::{model_type::ModelType, qualifier::Qualifier, reference::Reference, Extension};
 use serde::{Deserialize, Serialize};
 
-#[cfg(feature = "explorer")]
-use super::ValueType;
+// #[cfg(feature = "explorer")]
+// use super::ValueType;
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct Range {
@@ -68,10 +68,10 @@ pub struct Range {
     // #[cfg(not(feature = "explorer"))]
     // #[serde(skip_serializing_if = "Option::is_none")]
     // pub max: Option<Value>,
-    #[cfg(feature = "explorer")]
+    //#[cfg(feature = "explorer")]
     pub value_type: DataTypeDefXsd,
-    #[cfg(not(feature = "explorer"))]
-    pub value_type: String,
+    //#[cfg(not(feature = "explorer"))]
+    //pub value_type: String,
 }
 
 // TODO implement after clarification

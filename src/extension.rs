@@ -34,7 +34,7 @@ impl Extension {
         Self {
             semantic_id: None,
             supplemental_semantic_ids: None,
-            name: name,
+            name,
             value_type: None,
             value: None,
             refers_to: None,

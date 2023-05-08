@@ -1,12 +1,14 @@
 // SPDX-FileCopyrightText: 2021 Fraunhofer Institute for Experimental Software Engineering IESE
+// SPDX-FileCopyrightText: 2023 Jan Hecht
 //
 // SPDX-License-Identifier: MIT
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize, Clone, Debug)]
+#[derive(Serialize, Deserialize, Clone, Debug, Default)]
 #[serde(rename_all = "camelCase")]
 pub enum DataObjectTypeName {
+    #[default]
     Boolean,
     Double,
     Int,
@@ -46,12 +48,6 @@ impl DataObjectTypeName {
             "float" => DataObjectTypeName::Float,
             _ => DataObjectTypeName::default(),
         }
-    }
-}
-
-impl Default for DataObjectTypeName {
-    fn default() -> Self {
-        DataObjectTypeName::Boolean
     }
 }
 

@@ -68,8 +68,8 @@ impl RelationshipElement {
             supplemental_semantic_ids: None,
             qualifiers: None,
             embedded_data_specifications: None,
-            first: first,
-            second: second,
+            first,
+            second,
         }
     }
 }

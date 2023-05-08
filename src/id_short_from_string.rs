@@ -2,13 +2,14 @@
 //
 // SPDX-License-Identifier: MIT
 
-use regex::Regex;
+use regex::{Error, Regex};
 
 #[derive(Debug, PartialEq)]
 pub enum IdShortErrorReason {
     TooShort,
     TooLong,
     NoMatch(String),
+    RegexError(regex::Error)
 }
 
 #[derive(Debug, PartialEq)]
@@ -18,7 +19,13 @@ pub struct IdShortError {
 
 impl IdShortError {
     pub fn new(reason: IdShortErrorReason) -> IdShortError {
-        IdShortError { reason: reason }
+        IdShortError { reason }
+    }
+}
+
+impl From<regex::Error> for IdShortError{
+    fn from(value: Error) -> Self {
+        IdShortError::new(IdShortErrorReason::RegexError(value))
     }
 }
 
@@ -33,18 +40,18 @@ pub fn id_short_from_str(hopefully_id_short: &str) -> Result<String, IdShortErro
 ///
 /// This function checks length and regex bounds, returning a Result.
 pub fn id_short_from_string(hopefully_id_short: String) -> Result<String, IdShortError> {
-    if hopefully_id_short.len() < 1 {
-        return Err(IdShortError::new(IdShortErrorReason::TooShort));
+    if hopefully_id_short.is_empty() {
+        Err(IdShortError::new(IdShortErrorReason::TooShort))
     } else if hopefully_id_short.len() > 128 {
-        return Err(IdShortError::new(IdShortErrorReason::TooLong));
+        Err(IdShortError::new(IdShortErrorReason::TooLong))
     } else {
-        let re = Regex::new(r"^[a-zA-Z][a-zA-Z0-9_]*$").unwrap();
+        let re = Regex::new(r"^[a-zA-Z][a-zA-Z0-9_]*$")?;
         if re.is_match(hopefully_id_short.as_str()) {
-            return Ok(hopefully_id_short);
+            Ok(hopefully_id_short)
         } else {
-            return Err(IdShortError::new(IdShortErrorReason::NoMatch(
+            Err(IdShortError::new(IdShortErrorReason::NoMatch(
                 hopefully_id_short,
-            )));
+            )))
         }
     }
 }

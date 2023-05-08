@@ -75,3 +75,9 @@ impl SubmodelElementCollection {
         }
     }
 }
+
+impl Default for SubmodelElementCollection {
+    fn default() -> Self {
+        Self::new()
+    }
+}

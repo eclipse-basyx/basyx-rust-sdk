@@ -57,7 +57,7 @@ impl ConceptDescription {
             category: None,
             id_short: None,
             display_name: None,
-            id: id,
+            id,
             embedded_data_specifications: None,
             model_type: ModelType::ConceptDescription,
             description: None,

@@ -70,7 +70,7 @@ impl Blob {
             qualifiers: None,
             embedded_data_specifications: None,
             value: None,
-            content_type: content_type,
+            content_type,
         }
     }
 }

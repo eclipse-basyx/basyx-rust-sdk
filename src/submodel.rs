@@ -77,7 +77,7 @@ impl Submodel {
             category: None,
             id_short: None,
             display_name: None,
-            id: id,
+            id,
             kind: None,
             semantic_id: None,
             supplemental_semantic_ids: None,

@@ -81,7 +81,7 @@ impl Entity {
             qualifiers: None,
             embedded_data_specifications: None,
             statements: None,
-            entity_type: entity_type,
+            entity_type,
             global_asset_id: None,
             specific_asset_ids: None,
         }

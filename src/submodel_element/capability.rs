@@ -67,3 +67,9 @@ impl Capability {
         }
     }
 }
+
+impl Default for Capability{
+    fn default() -> Self {
+        Capability::new()
+    }
+}

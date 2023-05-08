@@ -85,3 +85,9 @@ impl Operation {
         }
     }
 }
+
+impl Default for Operation{
+    fn default() -> Self {
+        Operation::new()
+    }
+}

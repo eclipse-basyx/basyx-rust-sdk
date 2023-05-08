@@ -84,7 +84,7 @@ impl SubmodelElementList {
             embedded_data_specifications: None,
             order_relevant: None,
             semantic_id_list_element: None,
-            type_value_list_element: type_value_list_element,
+            type_value_list_element,
             value_type_list_element: None,
             value: None,
         }

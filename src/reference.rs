@@ -25,7 +25,7 @@ pub struct Reference {
 impl Reference {
     pub fn new(type_: ReferenceTypes, key: Key) -> Self {
         Self {
-            type_: type_,
+            type_,
             referred_semantic_id: None,
             keys: vec![key],
         }
@@ -33,9 +33,9 @@ impl Reference {
 
     pub fn new_from_vec(type_: ReferenceTypes, keys: Vec<Key>) -> Self {
         Self {
-            type_: type_,
+            type_,
             referred_semantic_id: None,
-            keys: keys,
+            keys,
         }
     }
 }

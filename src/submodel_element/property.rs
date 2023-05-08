@@ -11,8 +11,8 @@ use crate::{
 };
 use serde::{Deserialize, Serialize};
 
-#[cfg(feature = "explorer")]
-use super::ValueType;
+// #[cfg(feature = "explorer")]
+// use super::ValueType;
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct Property {
@@ -100,7 +100,7 @@ impl Property {
             value: None,
             value_id: None,
             //#[cfg(feature = "explorer")]
-            value_type: value_type,
+            value_type,
             // #[cfg(not(feature = "explorer"))]
             // value_type: value_type.to_string();
         }

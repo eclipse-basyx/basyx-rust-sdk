@@ -78,3 +78,9 @@ impl MultiLanguageProperty {
         }
     }
 }
+
+impl Default for MultiLanguageProperty{
+    fn default() -> Self {
+        MultiLanguageProperty::new()
+    }
+}
