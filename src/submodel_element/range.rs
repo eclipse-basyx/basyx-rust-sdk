@@ -4,9 +4,9 @@
 // SPDX-License-Identifier: MIT
 
 use super::EmbeddedDataSpecification;
-use crate::{DataTypeDefXsd, LangString as LangStringNameType};
 use crate::LangString as LangStringTextType;
 use crate::{model_type::ModelType, qualifier::Qualifier, reference::Reference, Extension};
+use crate::{DataTypeDefXsd, LangString as LangStringNameType};
 use serde::{Deserialize, Serialize};
 
 // #[cfg(feature = "explorer")]

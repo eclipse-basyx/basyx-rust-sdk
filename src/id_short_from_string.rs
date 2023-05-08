@@ -9,7 +9,7 @@ pub enum IdShortErrorReason {
     TooShort,
     TooLong,
     NoMatch(String),
-    RegexError(regex::Error)
+    RegexError(regex::Error),
 }
 
 #[derive(Debug, PartialEq)]
@@ -23,7 +23,7 @@ impl IdShortError {
     }
 }
 
-impl From<regex::Error> for IdShortError{
+impl From<regex::Error> for IdShortError {
     fn from(value: Error) -> Self {
         IdShortError::new(IdShortErrorReason::RegexError(value))
     }

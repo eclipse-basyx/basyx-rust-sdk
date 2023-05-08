@@ -74,7 +74,7 @@ impl ReferenceElement {
     }
 }
 
-impl Default for ReferenceElement{
+impl Default for ReferenceElement {
     fn default() -> Self {
         Self::new()
     }
