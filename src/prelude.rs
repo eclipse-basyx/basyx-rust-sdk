@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 pub use crate::{
-    AdministrativeInformation, AssetAdministrationShell, AssetInformation, Category,
+    AdministrativeInformation, AssetAdministrationShell, AssetInformation, AssetKind, Category,
     ConceptDescription, DataObjectTypeName, Environment, Key, LangString, ModelType, ModellingKind,
     Reference, Submodel,
 };
