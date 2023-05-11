@@ -59,6 +59,22 @@ pub struct AssetAdministrationShell {
 }
 
 impl AssetAdministrationShell {
+    ///Create a new AssetAdministrationShell
+    ///
+    /// id should be a valid Identifier (IRI, IRDI, ...).
+    ///
+    /// asset_information must have at least the asset_kind.
+    ///
+    /// Example:
+    ///
+    ///```
+    ///use basyx_rs::{AssetAdministrationShell, AssetInformation, AssetKind};
+    ///
+    ///let my_aas = AssetAdministrationShell::new(
+    ///                "https://example.com/id/123".to_string(),
+    ///                AssetInformation::new(AssetKind::Instance));
+    ///
+    /// ```
     pub fn new(id: String, asset_information: AssetInformation) -> Self {
         Self {
             extensions: None,
