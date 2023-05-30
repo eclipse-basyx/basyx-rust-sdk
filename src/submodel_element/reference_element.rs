@@ -6,7 +6,7 @@
 use super::EmbeddedDataSpecification;
 use crate::LangString as LangStringNameType;
 use crate::LangString as LangStringTextType;
-use crate::{model_type::ModelType, qualifier::Qualifier, reference::Reference, Extension};
+use crate::{qualifier::Qualifier, reference::Reference, Extension};
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
@@ -29,9 +29,6 @@ pub struct ReferenceElement {
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub description: Option<Vec<LangStringTextType>>,
-
-    #[serde(rename = "modelType")]
-    pub model_type: ModelType,
 
     // HasSemantics
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -64,7 +61,6 @@ impl ReferenceElement {
             id_short: None,
             display_name: None,
             description: None,
-            model_type: ModelType::ReferenceElement,
             semantic_id: None,
             supplemental_semantic_ids: None,
             qualifiers: None,

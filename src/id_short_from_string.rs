@@ -46,7 +46,11 @@ pub fn id_short_from_string(hopefully_id_short: String) -> Result<String, IdShor
         Err(IdShortError::new(IdShortErrorReason::TooLong))
     } else {
         let re = Regex::new(r"^[a-zA-Z][a-zA-Z0-9_]*$")?;
-        if re.is_match(hopefully_id_short.as_str()) {
+        let re2 = Regex::new(
+            r"^([\\t\\n\\r -\ud7ff\ue000-\ufffd]|\\ud800[\\udc00-\\udfff]|[\\ud801-\\udbfe][\\udc00-\\udfff]|\\udbff[\\udc00-\\udfff])*$",
+        )?;
+
+        if re.is_match(hopefully_id_short.as_str()) && re2.is_match(hopefully_id_short.as_str()) {
             Ok(hopefully_id_short)
         } else {
             Err(IdShortError::new(IdShortErrorReason::NoMatch(
@@ -69,7 +73,7 @@ mod tests {
     #[test]
     fn given_string_too_long_then_test_fails() {
         let result = id_short_from_str(
-            "0123456789\
+            "a123456789\
             0123456789\
             0123456789\
             0123456789\
@@ -122,7 +126,7 @@ mod tests {
 
     #[test]
     fn given_first_character_when_underscore_then_test_fails() {
-        let input = "?_Hello";
+        let input = "_Hello";
         let result = id_short_from_str(input);
         assert_eq!(
             result,
@@ -133,7 +137,7 @@ mod tests {
     }
 
     #[test]
-    fn given_foo_then_bla() {
+    fn given_valid_str_then_passes() {
         let result = id_short_from_str("my_new_id_short");
         assert_eq!(result, Ok(String::from("my_new_id_short")));
     }

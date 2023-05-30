@@ -5,7 +5,7 @@
 
 use super::EmbeddedDataSpecification;
 use crate::LangString as LangStringTextType;
-use crate::{model_type::ModelType, qualifier::Qualifier, reference::Reference, Extension};
+use crate::{qualifier::Qualifier, reference::Reference, Extension};
 use crate::{DataTypeDefXsd, LangString as LangStringNameType};
 use serde::{Deserialize, Serialize};
 
@@ -32,9 +32,6 @@ pub struct Range {
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub description: Option<Vec<LangStringTextType>>,
-
-    #[serde(rename = "modelType")]
-    pub model_type: ModelType,
 
     // HasSemantics
     #[serde(skip_serializing_if = "Option::is_none")]

@@ -7,9 +7,7 @@ use super::{EmbeddedDataSpecification, SubmodelElement};
 use crate::submodel_element::AasSubmodelElements;
 use crate::LangString as LangStringNameType;
 use crate::LangString as LangStringTextType;
-use crate::{
-    model_type::ModelType, qualifier::Qualifier, reference::Reference, DataTypeDefXsd, Extension,
-};
+use crate::{qualifier::Qualifier, reference::Reference, DataTypeDefXsd, Extension};
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
@@ -30,9 +28,6 @@ pub struct SubmodelElementList {
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub description: Option<Vec<LangStringTextType>>,
-
-    #[serde(rename = "modelType")]
-    pub model_type: ModelType,
 
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "semanticId")]
@@ -77,7 +72,6 @@ impl SubmodelElementList {
             id_short: None,
             display_name: None,
             description: None,
-            model_type: ModelType::SubmodelElementList,
             semantic_id: None,
             supplemental_semantic_ids: None,
             qualifiers: None,

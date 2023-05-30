@@ -5,10 +5,11 @@
 use crate::embedded_data_specification::EmbeddedDataSpecification;
 use crate::LangString as LangStringNameType;
 use crate::LangString as LangStringTextType;
-use crate::{Extension, ModelType, Qualifier, Reference};
+use crate::{Extension, Qualifier, Reference};
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
+#[serde(tag = "modelType")]
 pub struct Blob {
     // Referable
     // HasExtension
@@ -28,9 +29,6 @@ pub struct Blob {
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub description: Option<Vec<LangStringTextType>>,
-
-    #[serde(rename = "modelType")]
-    pub model_type: ModelType,
 
     // HasSemantics
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -64,7 +62,6 @@ impl Blob {
             id_short: None,
             display_name: None,
             description: None,
-            model_type: ModelType::Blob,
             semantic_id: None,
             supplemental_semantic_ids: None,
             qualifiers: None,

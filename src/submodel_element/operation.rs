@@ -7,7 +7,7 @@ use super::EmbeddedDataSpecification;
 use crate::submodel_element::OperationVariable;
 use crate::LangString as LangStringNameType;
 use crate::LangString as LangStringTextType;
-use crate::{model_type::ModelType, reference::Reference, Extension, Qualifier};
+use crate::{reference::Reference, Extension, Qualifier};
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
@@ -30,9 +30,6 @@ pub struct Operation {
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub description: Option<Vec<LangStringTextType>>,
-
-    #[serde(rename = "modelType")]
-    pub model_type: ModelType,
 
     // HasSemantics
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -74,7 +71,6 @@ impl Operation {
             id_short: None,
             display_name: None,
             description: None,
-            model_type: ModelType::Operation,
             semantic_id: None,
             supplemental_semantic_ids: None,
             qualifiers: None,

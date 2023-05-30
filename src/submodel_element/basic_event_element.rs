@@ -8,10 +8,11 @@ use crate::submodel_element::direction::Direction;
 use crate::submodel_element::state_of_event::StateOfEvent;
 use crate::LangString as LangStringNameType;
 use crate::LangString as LangStringTextType;
-use crate::{model_type::ModelType, qualifier::Qualifier, reference::Reference, Extension};
+use crate::{qualifier::Qualifier, reference::Reference, Extension};
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
+#[serde(tag = "modelType")]
 pub struct BasicEventElement {
     // Referable
     // HasExtension
@@ -31,9 +32,6 @@ pub struct BasicEventElement {
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub description: Option<Vec<LangStringTextType>>,
-
-    #[serde(rename = "modelType")]
-    pub model_type: ModelType,
 
     // HasSemantics
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -88,7 +86,6 @@ impl BasicEventElement {
             id_short: None,
             display_name: None,
             description: None,
-            model_type: ModelType::BasicEventElement,
             semantic_id: None,
             supplemental_semantic_ids: None,
             qualifiers: None,

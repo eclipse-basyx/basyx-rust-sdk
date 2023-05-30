@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use basyx_rs::{AssetAdministrationShell, AssetInformation, AssetKind, Submodel};
+use basyx_rs::{AssetAdministrationShell, AssetInformation, AssetKind, ReferenceTypes, Submodel};
 
 fn setup() -> (Submodel, Submodel, Submodel) {
     let sm1 = Submodel::new("https://example.com/ids/1".to_string());
@@ -30,7 +30,7 @@ fn add_one_gives_len_one() {
         AssetAdministrationShell::new("".into(), AssetInformation::new(AssetKind::Instance));
 
     // act
-    ut.add_reference_to_submodel(&sm1);
+    ut.add_reference_to_submodel(&sm1, ReferenceTypes::ModelReference, true);
 
     // assert
     assert_eq!(
@@ -49,9 +49,9 @@ fn add_three_gives_len_three() {
         AssetAdministrationShell::new("".into(), AssetInformation::new(AssetKind::Instance));
 
     // act
-    ut.add_reference_to_submodel(&sm1);
-    ut.add_reference_to_submodel(&sm2);
-    ut.add_reference_to_submodel(&sm3);
+    ut.add_reference_to_submodel(&sm1, ReferenceTypes::ModelReference, true);
+    ut.add_reference_to_submodel(&sm2, ReferenceTypes::ModelReference, true);
+    ut.add_reference_to_submodel(&sm3, ReferenceTypes::ModelReference, true);
 
     // assert
     assert_eq!(
@@ -69,9 +69,9 @@ fn add_three_and_delete_middle_gives_len_two() {
     let mut ut =
         AssetAdministrationShell::new("".into(), AssetInformation::new(AssetKind::Instance));
 
-    ut.add_reference_to_submodel(&sm1);
-    ut.add_reference_to_submodel(&sm2);
-    ut.add_reference_to_submodel(&sm3);
+    ut.add_reference_to_submodel(&sm1, ReferenceTypes::ModelReference, true);
+    ut.add_reference_to_submodel(&sm2, ReferenceTypes::ModelReference, true);
+    ut.add_reference_to_submodel(&sm3, ReferenceTypes::ModelReference, true);
 
     // act
     ut.delete_reference_to_submodel(1);

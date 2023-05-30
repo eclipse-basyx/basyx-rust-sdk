@@ -4,8 +4,8 @@
 
 pub use crate::{
     AdministrativeInformation, AssetAdministrationShell, AssetInformation, AssetKind, Category,
-    ConceptDescription, DataObjectTypeName, Environment, Key, LangString, ModelType, ModellingKind,
-    Reference, Submodel,
+    ConceptDescription, DataObjectTypeName, Environment, Key, LangString, ModellingKind, Reference,
+    Submodel,
 };
 
 pub use crate::submodel_element::{

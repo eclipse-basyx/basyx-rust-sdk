@@ -21,7 +21,7 @@
 //!         property.id_short = Some(id_short);
 //!    }
 //!
-//! let sme = SubmodelElement::SmeProperty(property);
+//! let sme = SubmodelElement::Property(property);
 //!
 //! let mut submodel = Submodel::new("https://example.com/ids/1234567890".to_string());
 //!
@@ -60,7 +60,6 @@ mod key;
 mod key_types;
 mod lang_string;
 mod level_type;
-mod model_type;
 mod modelling_kind;
 pub mod prelude;
 mod qualifier;
@@ -90,9 +89,9 @@ pub use environment::Environment;
 pub use extension::Extension;
 pub use id_short_from_string::*;
 pub use key::Key;
+pub use key_types::KeyTypes;
 pub use lang_string::LangString;
 pub use level_type::LevelType;
-pub use model_type::ModelType;
 pub use modelling_kind::ModellingKind;
 pub use qualifier::Qualifier;
 pub use qualifier_kind::QualifierKind;

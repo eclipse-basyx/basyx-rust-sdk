@@ -8,12 +8,13 @@ use crate::LangString as LangStringNameType;
 use crate::LangString as LangStringTextType;
 use crate::{
     administrative_information::AdministrativeInformation, asset_information::AssetInformation,
-    embedded_data_specification::EmbeddedDataSpecification, model_type::ModelType,
-    reference::Reference, Extension, Key, ReferenceTypes, Submodel,
+    embedded_data_specification::EmbeddedDataSpecification, reference::Reference, Extension, Key,
+    ReferenceTypes, Submodel,
 };
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
+#[serde(tag = "modelType")]
 pub struct AssetAdministrationShell {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub extensions: Option<Vec<Extension>>,
@@ -31,9 +32,6 @@ pub struct AssetAdministrationShell {
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub description: Option<Vec<LangStringTextType>>,
-
-    #[serde(rename = "modelType")]
-    pub model_type: ModelType,
 
     // Identifiable
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -65,7 +63,7 @@ impl AssetAdministrationShell {
     ///
     /// asset_information must have at least the asset_kind.
     ///
-    /// Example:
+    /// # Example:
     ///
     ///```
     ///use basyx_rs::{AssetAdministrationShell, AssetInformation, AssetKind};
@@ -85,21 +83,25 @@ impl AssetAdministrationShell {
             embedded_data_specifications: None,
             derived_from: None,
             asset_information,
-            model_type: ModelType::AssetAdministrationShell,
             description: None,
             administration: None,
             submodels: None,
         }
     }
 
-    pub fn add_reference_to_submodel(&mut self, submodel: &Submodel) {
-        let mut reference = Reference::new(
-            ReferenceTypes::ModelReference,
-            Key::new(KeyTypes::Submodel, submodel.id.clone()),
-        );
+    pub fn add_reference_to_submodel(
+        &mut self,
+        submodel: &Submodel,
+        type_: ReferenceTypes,
+        include_referred_semantic_id: bool,
+    ) {
+        let mut reference =
+            Reference::new(type_, Key::new(KeyTypes::Submodel, submodel.id.clone()));
 
-        if let Some(rsid) = &submodel.semantic_id {
-            reference.referred_semantic_id = Some(Box::new(rsid.clone()));
+        if include_referred_semantic_id {
+            if let Some(rsid) = &submodel.semantic_id {
+                reference.referred_semantic_id = Some(Box::new(rsid.clone()));
+            }
         }
 
         if let Some(v) = self.submodels.as_mut() {

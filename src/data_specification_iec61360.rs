@@ -5,14 +5,12 @@
 use crate::LangString as LangStringDefinitionTypeIec61360;
 use crate::LangString as LangStringPreferredNameTypeIec61360;
 use crate::LangString as LangStringShortNameTypeIec61360;
-use crate::{DataTypeIec61360, LevelType, ModelType, Reference, ValueList};
+use crate::{DataTypeIec61360, LevelType, Reference, ValueList};
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
+#[serde(tag = "modelType")]
 pub struct DataSpecificationIec61360 {
-    #[serde(rename = "modelType")]
-    pub model_type: ModelType,
-
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "dataType")]
     pub data_type: Option<DataTypeIec61360>,

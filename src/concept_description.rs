@@ -5,7 +5,6 @@
 
 use crate::administrative_information::AdministrativeInformation;
 use crate::embedded_data_specification::EmbeddedDataSpecification;
-use crate::model_type::ModelType;
 use crate::reference::Reference;
 use crate::Extension;
 use crate::LangString as LangStringNameType;
@@ -13,6 +12,7 @@ use crate::LangString as LangStringTextType;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
+#[serde(tag = "modelType")]
 pub struct ConceptDescription {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub extensions: Option<Vec<Extension>>,
@@ -30,9 +30,6 @@ pub struct ConceptDescription {
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub description: Option<Vec<LangStringTextType>>,
-
-    #[serde(rename = "modelType")]
-    pub model_type: ModelType,
 
     // Identifiable
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -59,7 +56,6 @@ impl ConceptDescription {
             display_name: None,
             id,
             embedded_data_specifications: None,
-            model_type: ModelType::ConceptDescription,
             description: None,
             administration: None,
             is_case_of: None,

@@ -5,7 +5,6 @@
 
 use crate::administrative_information::AdministrativeInformation;
 use crate::embedded_data_specification::EmbeddedDataSpecification;
-use crate::model_type::ModelType;
 use crate::modelling_kind::ModellingKind;
 use crate::qualifier::Qualifier;
 use crate::reference::Reference;
@@ -16,6 +15,7 @@ use crate::LangString as LangStringTextType;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
+#[serde(tag = "modelType")]
 pub struct Submodel {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub extensions: Option<Vec<Extension>>,
@@ -33,9 +33,6 @@ pub struct Submodel {
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub description: Option<Vec<LangStringTextType>>,
-
-    #[serde(rename = "modelType")]
-    pub model_type: ModelType,
 
     // Identifiable
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -83,7 +80,6 @@ impl Submodel {
             supplemental_semantic_ids: None,
             qualifiers: None,
             embedded_data_specifications: None,
-            model_type: ModelType::Submodel,
             description: None,
             administration: None,
             submodel_elements: None,
