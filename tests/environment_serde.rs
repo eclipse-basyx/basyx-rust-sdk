@@ -461,10 +461,7 @@ fn environment_example_simple() {
 
     // act
     //let utjson = serde_json::to_value(&environment).unwrap();
-    let expected = read_json_from_file(Path::new(
-        r".\tests\Example-Simple.json",
-    ))
-    .unwrap();
+    let expected = read_json_from_file(Path::new(r".\tests\Example-Simple.json")).unwrap();
 
     // assert
     assert_eq!(environment, expected);
