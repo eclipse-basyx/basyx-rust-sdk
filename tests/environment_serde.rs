@@ -462,7 +462,7 @@ fn environment_example_simple() {
     // act
     //let utjson = serde_json::to_value(&environment).unwrap();
     let expected = read_json_from_file(Path::new(
-        r"C:\Users\janhe\source\repos\rust\basyx-rust-sdk\tests\Example-Simple.json",
+        r".\tests\Example-Simple.json",
     ))
     .unwrap();
 
