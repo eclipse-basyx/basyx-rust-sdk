@@ -1,7 +1,7 @@
 <!--
 SPDX-FileCopyrightText: 2021 Fraunhofer Institute for Experimental Software Engineering IESE
 
-SPDX-License-Identifier: EPL-2.0
+SPDX-License-Identifier: MIT
 -->
 
 # BaSyx Rust SDK
@@ -18,7 +18,7 @@ SPDX-License-Identifier: EPL-2.0
 
 A Rust library to work with Asset Administration Shells (AAS).
 
-This library supports version 3.0-RC01 of the ["Details of the Asset Administration Shell"](https://www.plattform-i40.de/IP/Redaktion/EN/Downloads/Publikation/Details_of_the_Asset_Administration_Shell_Part1_V3.html). At the moment, only JSON (de-)serialization is supported.
+This library supports version 3.0 of the ["Details of the Asset Administration Shell"](https://industrialdigitaltwin.org/wp-content/uploads/2023/04/IDTA-01001-3-0_SpecificationAssetAdministrationShell_Part1_Metamodel.pdf). At the moment, only JSON (de-)serialization is supported.
 
 The Eclipse BaSyx project provides a [wiki](https://wiki.eclipse.org/BaSyx).
 
@@ -49,7 +49,6 @@ of Education and Research (BMBF), grant number 01IS16022.
 
 ## Declared Project Licenses
 
-This program and the accompanying materials are made available under the terms of the Eclipse Public License v. 2.0 which is available at
-https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.html
+This program and the accompanying materials are made available under the terms of the MIT License.
 
-SPDX-License-Identifier: EPL-2.0
+SPDX-License-Identifier: MIT

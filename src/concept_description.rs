@@ -1,48 +1,63 @@
 // SPDX-FileCopyrightText: 2021 Fraunhofer Institute for Experimental Software Engineering IESE
+// SPDX-FileCopyrightText: 2023 Jan Hecht
 //
-// SPDX-License-Identifier: EPL-2.0
+// SPDX-License-Identifier: MIT
 
-use crate::{
-    administrative_information::AdministrativeInformation,
-    category::Category,
-    embedded_data_specification::EmbeddedDataSpecification,
-    identifier::Identifier,
-    model_type::{ModelType, ModelTypeName},
-    reference::Reference,
-};
+use crate::administrative_information::AdministrativeInformation;
+use crate::embedded_data_specification::EmbeddedDataSpecification;
+use crate::reference::Reference;
+use crate::Extension;
+use crate::LangString as LangStringNameType;
+use crate::LangString as LangStringTextType;
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
+#[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
+#[serde(tag = "modelType")]
 pub struct ConceptDescription {
-    // ConceptDescription
-    pub is_case_of: Option<Reference>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub extensions: Option<Vec<Extension>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub category: Option<String>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "idShort")]
+    pub id_short: Option<String>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "displayName")]
+    pub display_name: Option<Vec<LangStringNameType>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<Vec<LangStringTextType>>,
 
     // Identifiable
-    pub identification: Identifier,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub administration: Option<AdministrativeInformation>,
 
-    // Referable
-    pub id_short: String,
-    pub model_type: ModelType,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub category: Option<Category>,
+    pub id: String,
 
     // HasDataSpecification
-    #[serde(skip_serializing_if = "Vec::is_empty")]
-    pub embedded_data_specification: Vec<EmbeddedDataSpecification>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "embeddedDataSpecifications")]
+    pub embedded_data_specifications: Option<Vec<EmbeddedDataSpecification>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "isCaseOf")]
+    pub is_case_of: Option<Vec<Reference>>,
 }
 
 impl ConceptDescription {
-    pub fn new(id_short: String, identification: Identifier) -> Self {
+    pub fn new(id: String) -> Self {
         Self {
-            identification,
-            administration: None,
-            id_short,
+            extensions: None,
             category: None,
-            model_type: ModelType::new(ModelTypeName::ConceptDescription),
-            embedded_data_specification: vec![],
+            id_short: None,
+            display_name: None,
+            id,
+            embedded_data_specifications: None,
+            description: None,
+            administration: None,
             is_case_of: None,
         }
     }

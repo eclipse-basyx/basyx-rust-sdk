@@ -1,84 +1,103 @@
 // SPDX-FileCopyrightText: 2021 Fraunhofer Institute for Experimental Software Engineering IESE
+// SPDX-FileCopyrightText: 2023 Jan Hecht
 //
-// SPDX-License-Identifier: EPL-2.0
+// SPDX-License-Identifier: MIT
 
-use super::{EmbeddedDataSpecification, Qualifier};
-use crate::{
-    category::Category,
-    model_type::{ModelType, ModelTypeName},
-    modeling_kind::ModelingKind,
-    reference::Reference,
-    DataObjectTypeName, Value,
-};
+use super::EmbeddedDataSpecification;
+use crate::LangString as LangStringNameType;
+use crate::LangString as LangStringTextType;
+use crate::{qualifier::Qualifier, reference::Reference, DataTypeDefXsd, Extension};
 use serde::{Deserialize, Serialize};
 
-#[cfg(feature = "explorer")]
-use super::ValueType;
+// #[cfg(feature = "explorer")]
+// use super::ValueType;
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
+#[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
+#[serde(tag = "modelType")]
 pub struct Property {
-    // Property
-    #[cfg(feature = "explorer")]
-    pub value: String,
-    #[cfg(not(feature = "explorer"))]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub value: Option<Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub value_id: Option<Reference>,
-    #[cfg(feature = "explorer")]
-    pub value_type: ValueType,
-    #[cfg(not(feature = "explorer"))]
-    pub value_type: String,
-
-    // SubmodelElement
-    pub id_short: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub kind: Option<ModelingKind>,
-
     // Referable
-    pub model_type: ModelType,
+    // HasExtension
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub category: Option<Category>,
+    pub extensions: Option<Vec<Extension>>,
 
-    // HasDataSpecification
-    #[serde(skip_serializing_if = "Vec::is_empty")]
-    pub embedded_data_specification: Vec<EmbeddedDataSpecification>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub category: Option<String>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "idShort")]
+    pub id_short: Option<String>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "displayName")]
+    pub display_name: Option<Vec<LangStringNameType>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<Vec<LangStringTextType>>,
 
     // HasSemantics
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "semanticId")]
     pub semantic_id: Option<Reference>,
 
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "supplementalSemanticIds")]
+    pub supplemental_semantic_ids: Option<Vec<Reference>>,
+
     // Qualifiable
-    #[serde(skip_serializing_if = "Vec::is_empty")]
-    pub qualifiers: Vec<Qualifier>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub qualifiers: Option<Vec<Qualifier>>,
+
+    // HasDataSpecification
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "embeddedDataSpecifications")]
+    pub embedded_data_specifications: Option<Vec<EmbeddedDataSpecification>>,
+
+    // Property
+    //#[cfg(feature = "explorer")]
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub value: Option<String>,
+    // #[cfg(not(feature = "explorer"))]
+    // #[serde(skip_serializing_if = "Option::is_none")]
+    // pub value: Option<Value>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "valueId")]
+    pub value_id: Option<Reference>,
+
+    // #[cfg(feature = "explorer")]
+    #[serde(rename = "valueType")]
+    pub value_type: DataTypeDefXsd,
+    // #[cfg(not(feature = "explorer"))] // TODO clarify this feature
+    // pub value_type: String,
 }
 
 impl Property {
-    pub fn new(id_short: String, value: Option<Value>, value_type: DataObjectTypeName) -> Self {
+    pub fn new(value_type: DataTypeDefXsd) -> Self {
         Self {
-            #[cfg(feature = "explorer")]
-            value: {
-                if let Some(v) = value {
-                    v.to_string()
-                } else {
-                    String::from("")
-                }
-            },
-            #[cfg(not(feature = "explorer"))]
-            value,
-            value_id: None,
-            semantic_id: None,
-            id_short,
+            // #[cfg(feature = "explorer")]
+            // value: {
+            //     if let Some(v) = value {
+            //         v.to_string()
+            //     } else {
+            //         String::from("")
+            //     }
+            // },
+            // #[cfg(not(feature = "explorer"))]
+            // value,
+            extensions: None,
             category: None,
-            model_type: ModelType::new(ModelTypeName::Property),
-            #[cfg(feature = "explorer")]
-            value_type: ValueType::new(value_type),
-            #[cfg(not(feature = "explorer"))]
-            value_type: value_type.to_string(),
-            embedded_data_specification: vec![],
-            qualifiers: vec![],
-            kind: None,
+            id_short: None,
+            display_name: None,
+            description: None,
+            semantic_id: None,
+            supplemental_semantic_ids: None,
+            qualifiers: None,
+            embedded_data_specifications: None,
+            value: None,
+            value_id: None,
+            //#[cfg(feature = "explorer")]
+            value_type,
+            // #[cfg(not(feature = "explorer"))]
+            // value_type: value_type.to_string();
         }
     }
 }

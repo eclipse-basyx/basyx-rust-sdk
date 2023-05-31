@@ -1,11 +1,15 @@
 // SPDX-FileCopyrightText: 2021 Fraunhofer Institute for Experimental Software Engineering IESE
+// SPDX-FileCopyrightText: 2023 Jan Hecht
 //
-// SPDX-License-Identifier: EPL-2.0
+// SPDX-License-Identifier: MIT
 
+use crate::{DataSpecificationIec61360, Reference};
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
+#[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct EmbeddedDataSpecification {
-    // TODO
+    #[serde(rename = "dataSpecification")]
+    pub data_specification: Reference,
+    #[serde(rename = "dataSpecificationContent")]
+    pub data_specification_content: DataSpecificationIec61360,
 }

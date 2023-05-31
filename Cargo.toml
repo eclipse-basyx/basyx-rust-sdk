@@ -1,22 +1,24 @@
 # SPDX-FileCopyrightText: 2021 Fraunhofer Institute for Experimental Software Engineering IESE
+# SPDX-FileCopyrightText: 2023 Jan Hecht
 #
-# SPDX-License-Identifier: EPL-2.0
+# SPDX-License-Identifier: MIT
 
 [package]
 name = "basyx-rs"
-version = "0.1.0"
+version = "0.2.0"
 authors = [
     "Daniel Hillen <daniel.hillen@iese.fraunhofer.de>",
-    "Andreas Schmidt <andreas.schmidt@iese.fraunhofer.de>"
+    "Andreas Schmidt <andreas.schmidt@iese.fraunhofer.de>",
+    "Jan Hecht <jan.hecht@jh-isw.de"
 ]
 description = "A Rust library to work with Asset Administration Shells."
-edition = "2018"
-rust-version = "1.54.0"
+edition = "2021"
+rust-version = "1.69.0"
 homepage = "https://github.com/eclipse-basyx/rust-sdk"
 documentation = "https://docs.rs/basyx-rs/"
 readme = "README.md"
 keywords = ["aas", "basyx", "serde"]
-license = "EPL-2.0"
+license = "MIT"
 repository = "https://github.com/eclipse-basyx/rust-sdk"
 
 [[bin]]
@@ -29,10 +31,13 @@ bench = false
 clap = { version = "3.0.0-beta.5", optional = true }
 color-eyre = { version = "0.5.11", default-features = false }
 colored = "2.0.0"
-jsonschema = { version = "=0.13.2", default-features = false }
-serde = { version = "1.0.130", features = ["derive"] }
-serde_json = "1.0.68"
-thiserror = "1.0.30"
+jsonschema = { version = "=0.17.0", default-features = false, features = ["draft201909"] }
+serde = { version = "1.0.163", features = ["derive"] }
+serde_json = "1.0.96"
+thiserror = "1.0.40"
+strum = "0.24.1"
+strum_macros = "0.24.3"
+regex = "1.8.1"
 
 [features]
 default = ["clap"]

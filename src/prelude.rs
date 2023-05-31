@@ -1,14 +1,15 @@
 // SPDX-FileCopyrightText: 2021 Fraunhofer Institute for Experimental Software Engineering IESE
 //
-// SPDX-License-Identifier: EPL-2.0
+// SPDX-License-Identifier: MIT
 
 pub use crate::{
-    AdministrativeInformation, Category, ConceptDescription, DataObjectTypeName, Environment,
-    Identifier, Key, KeyType, LangString, ModelType, ModelTypeName, ModelingKind, Reference,
-    Submodel, Value,
+    AdministrativeInformation, AssetAdministrationShell, AssetInformation, AssetKind, Category,
+    ConceptDescription, DataObjectTypeName, Environment, Key, LangString, ModellingKind, Reference,
+    Submodel,
 };
 
 pub use crate::submodel_element::{
-    BasicEvent, Operation, OperationVariable, Property, Qualifier, Range, ReferenceElement,
-    SubmodelElement, SubmodelElementCollection, Variable,
+    AasSubmodelElements, AnnotatedRelationshipElement, BasicEventElement, Blob, Capability,
+    DataElement, Entity, File, MultiLanguageProperty, Operation, Property, Range, ReferenceElement,
+    RelationshipElement, SubmodelElement, SubmodelElementCollection, SubmodelElementList,
 };

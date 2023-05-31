@@ -1,28 +1,15 @@
 // SPDX-FileCopyrightText: 2021 Fraunhofer Institute for Experimental Software Engineering IESE
+// SPDX-FileCopyrightText: 2023 Jan Hecht
 //
-// SPDX-License-Identifier: EPL-2.0
+// SPDX-License-Identifier: MIT
 
 use serde::{Deserialize, Serialize};
+use strum_macros::{Display, EnumString};
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, Debug, Clone, EnumString, Display, Default)]
 pub enum Category {
     VARIABLE,
     PARAMETER,
+    #[default]
     CONSTANT,
-}
-
-impl Category {
-    pub fn get(cat: String) -> Category {
-        match cat.as_str() {
-            "VARIABLE" => Category::VARIABLE,
-            "PARAMETER" => Category::PARAMETER,
-            "CONSTANT" => Category::CONSTANT,
-            _ => Category::default(),
-        }
-    }
-}
-impl Default for Category {
-    fn default() -> Self {
-        Category::CONSTANT
-    }
 }

@@ -1,69 +1,80 @@
 // SPDX-FileCopyrightText: 2021 Fraunhofer Institute for Experimental Software Engineering IESE
+// SPDX-FileCopyrightText: 2023 Jan Hecht
 //
-// SPDX-License-Identifier: EPL-2.0
+// SPDX-License-Identifier: MIT
 
-use super::{EmbeddedDataSpecification, Qualifier, SubmodelElement};
-use crate::{
-    category::Category,
-    model_type::{ModelType, ModelTypeName},
-    modeling_kind::ModelingKind,
-    reference::Reference,
-};
+use super::{EmbeddedDataSpecification, SubmodelElement};
+use crate::LangString as LangStringNameType;
+use crate::LangString as LangStringTextType;
+use crate::{qualifier::Qualifier, reference::Reference, Extension};
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
+#[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
+#[serde(tag = "modelType")]
 pub struct SubmodelElementCollection {
-    // SubmodelElementCollection
-    pub ordered: bool,
-    pub allow_duplicates: bool,
-    #[serde(skip_serializing_if = "Vec::is_empty")]
-    pub value: Vec<SubmodelElement>,
-
-    // SubmodelElement
-    pub id_short: String,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub kind: Option<ModelingKind>,
+    pub extensions: Option<Vec<Extension>>,
 
-    // Referable
-    pub model_type: ModelType,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub category: Option<Category>,
+    pub category: Option<String>,
 
-    // HasDataSpecification
-    #[serde(skip_serializing_if = "Vec::is_empty")]
-    pub embedded_data_specification: Vec<EmbeddedDataSpecification>,
-
-    // HasSemantics
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "idShort")]
+    pub id_short: Option<String>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "displayName")]
+    pub display_name: Option<Vec<LangStringNameType>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<Vec<LangStringTextType>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "semanticId")]
     pub semantic_id: Option<Reference>,
 
-    // Qualifiable
-    #[serde(skip_serializing_if = "Vec::is_empty")]
-    pub qualifiers: Vec<Qualifier>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "supplementalSemanticIds")]
+    pub supplemental_semantic_ids: Option<Vec<Reference>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub qualifiers: Option<Vec<Qualifier>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "embeddedDataSpecifications")]
+    pub embedded_data_specifications: Option<Vec<EmbeddedDataSpecification>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub value: Option<Vec<SubmodelElement>>,
 }
 
 impl SubmodelElementCollection {
-    pub fn new(
-        id_short: String,
-        ordered: bool,
-        allow_duplicates: bool,
-        submodel_elements: Vec<SubmodelElement>,
-    ) -> Self {
+    pub fn new() -> Self {
         Self {
-            id_short,
-            ordered,
-            allow_duplicates,
-            value: submodel_elements,
-            semantic_id: None,
-            embedded_data_specification: vec![],
+            extensions: None,
             category: None,
-            qualifiers: vec![],
-            model_type: ModelType::new(ModelTypeName::SubmodelElementCollection),
-            kind: None,
+            id_short: None,
+            display_name: None,
+            description: None,
+            semantic_id: None,
+            supplemental_semantic_ids: None,
+            qualifiers: None,
+            embedded_data_specifications: None,
+            value: None,
         }
     }
+
     pub fn add_submodel_element(&mut self, element: SubmodelElement) {
-        self.value.push(element);
+        if let Some(v) = self.value.as_mut() {
+            v.push(element);
+        } else {
+            self.value = Some(vec![element]);
+        }
+    }
+}
+
+impl Default for SubmodelElementCollection {
+    fn default() -> Self {
+        Self::new()
     }
 }
