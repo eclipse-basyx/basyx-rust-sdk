@@ -9,7 +9,6 @@ use crate::{Extension, Qualifier, Reference};
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
-#[serde(tag = "modelType")]
 pub struct Capability {
     // Referable
     // HasExtension

@@ -10,7 +10,6 @@ use crate::{qualifier::Qualifier, reference::Reference, Extension};
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
-#[serde(tag = "modelType")]
 pub struct SubmodelElementCollection {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub extensions: Option<Vec<Extension>>,

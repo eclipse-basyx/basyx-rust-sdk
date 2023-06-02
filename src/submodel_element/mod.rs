@@ -121,6 +121,7 @@ mod tests {
                 }"#;
 
         let ut: SubmodelElement = serde_json::from_str(input).unwrap();
+        //let ut_enum: SubmodelElement = SubmodelElement::Property(ut);
 
         let mut prop = Property::new(DataTypeDefXsd::XsInteger);
         prop.semantic_id = Some(Reference::new(
