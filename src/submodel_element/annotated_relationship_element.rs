@@ -10,7 +10,6 @@ use crate::{Extension, Qualifier, Reference};
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
-#[serde(tag = "modelType")]
 pub struct AnnotatedRelationshipElement {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub extensions: Option<Vec<Extension>>,

@@ -5,7 +5,7 @@
 
 [package]
 name = "basyx-rs"
-version = "0.2.0"
+version = "0.2.1"
 authors = [
     "Daniel Hillen <daniel.hillen@iese.fraunhofer.de>",
     "Andreas Schmidt <andreas.schmidt@iese.fraunhofer.de>",

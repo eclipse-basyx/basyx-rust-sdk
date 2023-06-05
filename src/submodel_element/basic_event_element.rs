@@ -12,7 +12,6 @@ use crate::{qualifier::Qualifier, reference::Reference, Extension};
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
-#[serde(tag = "modelType")]
 pub struct BasicEventElement {
     // Referable
     // HasExtension

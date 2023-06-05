@@ -13,7 +13,6 @@ use serde::{Deserialize, Serialize};
 // use super::ValueType;
 
 #[derive(Clone, PartialEq, Debug, Deserialize, Serialize)]
-#[serde(tag = "modelType")]
 pub struct Property {
     // Referable
     // HasExtension
